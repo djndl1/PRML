@@ -144,7 +144,7 @@ figs-within-sections
 
 \begin_body
 
-\begin_layout Part
+\begin_layout Part*
 2.
  Probability Distribution
 \end_layout
@@ -173,16 +173,16 @@ non-parametric
  approaches.
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Section*
 2.1 Binary Variables 
 \end_layout
 
 \begin_layout Standard
 Given 
-\begin_inset Formula $x\in{0,1}$
+\begin_inset Formula $x\in\left\{ 0,1\right\} $
 \end_inset
 
-and 
+ and 
 \begin_inset Formula $0\leq\mu\leq1$
 \end_inset
 
@@ -190,7 +190,7 @@ and
  the Bernoulli distribution
 \begin_inset Formula 
 \begin{equation}
-\text{\text{Bern}(x|\ensuremath{\mu)=\mu^{x}(1-\mu)^{1-x}}}
+\text{\text{Bern}\left(x|\mu\right) \ensuremath{=\mu^{x}\left(1-\mu\right){}^{1-x}}}
 \end{equation}
 
 \end_inset
@@ -200,7 +200,7 @@ and
 
 \begin_layout Standard
 whose 
-\begin_inset Formula $\mu_{ML}=\dfrac{1}{N}\sum_{n=1}^{N}x_{n}=\dfrac{m}{N}$
+\begin_inset Formula $\mu_{ML}=\dfrac{1}{N}\sum\limits _{n=1}^{N}x_{n}=\dfrac{m}{N}$
 \end_inset
 
 , 
@@ -227,7 +227,7 @@ Suppose we toss this coin
  will be
 \begin_inset Formula 
 \begin{equation}
-\text{Bin}(m|N,\mu)=\dbinom{N}{m}\mu^{m}(1-\mu)^{N-m}
+\text{Bin}\left(m|N,\mu\right)=\dbinom{N}{m}\mu^{m}\left(1-\mu\right){}^{N-m}
 \end{equation}
 
 \end_inset
@@ -244,7 +244,7 @@ If we obtain
 s.
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsection*
 2.1.1 The beta distribution 
 \end_layout
 
@@ -272,7 +272,7 @@ beta
  distribution:
 \begin_inset Formula 
 \begin{equation}
-\text{Beta}(\mu|a,b)=\frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}\mu^{a-1}(1-\mu)^{b-1}
+\text{Beta}\left(\mu|a,b\right)=\frac{\Gamma\left(a+b\right)}{\Gamma\left(a\right)\Gamma\left(b\right)}\mu^{a-1}\left(1-\mu\right){}^{b-1}
 \end{equation}
 
 \end_inset
@@ -280,7 +280,7 @@ beta
 where the gamma function 
 \begin_inset Formula 
 \begin{equation}
-\Gamma(z)=\int_{0}^{\infty}x^{z-1}e^{-x}dx
+\Gamma\left(z\right)=\int_{0}^{\infty}x^{z-1}e^{-x}dx
 \end{equation}
 
 \end_inset
@@ -310,7 +310,7 @@ hyperparameters.
 Multiplying (0.1) by (0.2) yields the posterior 
 \begin_inset Formula 
 \[
-p(\mu|m,l,a,b)\propto\dbinom{l+m}{m}\mu^{m+a-1}(1-\mu)^{l+b-1}
+p\left(\mu|m,l,a,b\right)\propto\dbinom{l+m}{m}\mu^{m+a-1}\left(1-\mu\right){}^{l+b-1}
 \]
 
 \end_inset
@@ -361,8 +361,8 @@ Given a parameter
 \begin_layout Standard
 \begin_inset Formula 
 \begin{align*}
-E_{\theta}(\theta) & =E_{D}[\underset{\text{posterior mean }}{E_{\theta}[\theta|D]}]\\
-\text{var}_{\theta}[\theta] & =E_{D}[\text{var}_{\theta}[\theta|D]]+\text{var}_{D}[E_{\theta}[\theta|D]]
+E_{\theta}(\theta) & =E_{D}\underset{\text{posterior mean }}{\left[E_{\theta}\left[\theta|D\right]\right]}\\
+\text{var}_{\theta}[\theta] & =E_{D}\left[\text{var}_{\theta}\left[\theta|D\right]\right]+\text{var}_{D}\left[E_{\theta}\left[\theta|D\right]\right]
 \end{align*}
 
 \end_inset
@@ -379,15 +379,174 @@ On average, the expectation of the prior expectation becomes more stable
  is smaller than the prior (less uncertainty).
 \end_layout
 
-\begin_layout Subsection*
-2.3 The Gaussian Distribution
+\begin_layout Section*
+2.2 Multinomial Variables
+\end_layout
+
+\begin_layout Standard
+The probability of 
+\begin_inset Formula $x_{k}=1$
+\end_inset
+
+ is denoted by the parameter 
+\begin_inset Formula $\mu_{k}$
+\end_inset
+
+, then the distribution
+\begin_inset Formula 
+\begin{equation}
+p\left(x|\mu\right)=\prod_{k=1}^{K}\mu_{k}^{x_{k}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $\mathrm{x}=\left(\dots,x_{k},\dots\right){}^{T}$
+\end_inset
+
+and 
+\begin_inset Formula $\mu=\left(\mu_{1},\dots,\mu_{K}\right){}^{T}$
+\end_inset
+
+ and 
+\begin_inset Formula $\sum\limits _{k}\mu_{_{k}}=1,\sum\limits _{k}x_{k}=1,\mathbb{E}\left[\mathrm{x}|\mu\right]=\sum\limits _{x}p\left(\mathrm{x}|\mu\right)\mathrm{x}=\mu$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Given a data set 
+\begin_inset Formula $D$
+\end_inset
+
+ of 
+\begin_inset Formula $N$
+\end_inset
+
+ observations, to use KKT conditions to maximize its MAL
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \[
-N(x|\mu,\sigma^{2})=\dfrac{1}{(2\pi)^{D/2}}\dfrac{1}{|\Sigma|^{1/2}}\exp\Bigg\{-\dfrac{1}{2}(x-\mu)^{T}\Sigma^{-1}(x-\mu)\Bigg\}
+\sum_{k=1}^{K}m_{k}\ln\mu_{k}+\lambda\left(\sum_{k=1}^{K}\mu_{k}-1\right)
 \]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $m_{k}$
+\end_inset
+
+is the number of occurrence of 
+\begin_inset Formula $x_{k}=1$
+\end_inset
+
+, yields 
+\begin_inset Formula $\mu_{k}^{ML}=\dfrac{m_{k}}{N}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The joint distribution of 
+\begin_inset Formula $m_{1},\dots,m_{K}$
+\end_inset
+
+ conditioned on the parameters 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and the total number of observations 
+\begin_inset Formula $N$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align}
+\text{Mult}\left(m_{1},\dots,m_{k}|\mu,N\right) & =\frac{N!}{m_{1}!m_{2}!\dots m_{k}!}\prod_{k=1}^{K}\mu_{k}^{m_{k}}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+subject to
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\prod_{k=1}^{K}m_{k}=N
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+2.2.1 The Dirichlet distribution
+\end_layout
+
+\begin_layout Standard
+A family of prior distribution for the parameters 
+\begin_inset Formula $\left\{ \mu_{k}\right\} $
+\end_inset
+
+ of the multinomial distribution, the 
+\shape italic
+dirichlet distribution
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\text{Dir}(\mu|\alpha)=\frac{\Gamma\left(\sum_{k}\alpha_{k}\right)}{\Gamma\left(\alpha_{1}\right)\dots\Gamma\left(\alpha_{K}\right)}\prod_{k=1}^{K}\mu_{k}^{\alpha_{k}-1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Multiply (0.7) by (0.6)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+p\left(\mu|D,\alpha\right) & \propto\prod_{k=1}^{K}\mu_{k}^{\alpha_{k}+m_{k}+1}\\
+p\left(\mu|D,\alpha\right) & =\text{Dir}\left(\mu|\alpha+m\right)=\frac{\Gamma\left(N+\sum_{k}\alpha_{k}\right)}{\Gamma\left(\alpha_{1}+m_{1}\right)\dots\Gamma\left(\alpha_{K}+m_{k}\right)}\prod_{k=1}^{K}\mu_{k}^{\alpha_{k}+m_{k}-1}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+2.3 The Gaussian Distribution
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+N\left(x|\mu,\sigma^{2}\right)=\dfrac{1}{\left(2\pi\right){}^{D/2}}\dfrac{1}{\left|\Sigma\right|{}^{1/2}}\exp\left\{ -\dfrac{1}{2}\left(x-\mu\right){}^{T}\Sigma^{-1}\left(x-\mu\right)\right\} 
+\end{equation}
 
 \end_inset
 
@@ -398,6 +557,23 @@ N(x|\mu,\sigma^{2})=\dfrac{1}{(2\pi)^{D/2}}\dfrac{1}{|\Sigma|^{1/2}}\exp\Bigg\{-
 
 \emph on
 Mahalanobis distance
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\begin_inset Formula $\left(x-\mu\right){}^{T}\Sigma^{-1}\left(x-\mu\right)$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection*
@@ -417,7 +593,7 @@ n of one set conditoned on the other is again Gaussian.
 
 \begin_layout Standard
 Given a marginal Gaussian distribution 
-\begin_inset Formula $p(x)$
+\begin_inset Formula $p\left(x\right)$
 \end_inset
 
  for 
@@ -425,7 +601,7 @@ Given a marginal Gaussian distribution
 \end_inset
 
  and a condition Gaussian distribution 
-\begin_inset Formula $p(y|x)$
+\begin_inset Formula $p\left(y|x\right)$
 \end_inset
 
  for 
@@ -457,7 +633,7 @@ Given a marginal Gaussian distribution
 
 \begin_layout Standard
 Given a data set 
-\begin_inset Formula $X=(x_{1},...,x_{N})^{T}$
+\begin_inset Formula $X=\left(x_{1},...,x_{N}\right){}^{T}$
 \end_inset
 
 
@@ -465,9 +641,9 @@ Given a data set
 
 \begin_layout Standard
 \begin_inset Formula 
-\[
-\ln p(X|\mu,\Sigma)=-\dfrac{ND}{2}\ln(2\pi)-\dfrac{N}{2}\ln|\Sigma|-\dfrac{1}{2}\sum_{n=1}^{N}(x_{n}-\mu)^{T}\Sigma^{-1}(x_{n}-\mu)
-\]
+\begin{equation}
+\ln p\left(X|\mu,\Sigma\right)=-\dfrac{ND}{2}\ln\left(2\pi\right)-\dfrac{N}{2}\ln\left|\Sigma\right|-\dfrac{1}{2}\sum_{n=1}^{N}(x_{n}-\mu)^{T}\Sigma^{-1}(x_{n}-\mu)
+\end{equation}
 
 \end_inset
 
@@ -530,12 +706,12 @@ variance
 \begin_inset Formula $\sigma^{2}$
 \end_inset
 
-known, a set of 
+ known, a set of 
 \begin_inset Formula $N$
 \end_inset
 
-observations 
-\begin_inset Formula $X={x_{1},\dots,x_{N}}$
+ observations 
+\begin_inset Formula $X=\left\{ x_{1},\dots,x_{N}\right\} $
 \end_inset
 
 , the mean 
@@ -563,9 +739,30 @@ The exponential family of distributions over
 
 \begin_layout Standard
 \begin_inset Formula 
-\[
-p(x|\eta)=h(x)g(\eta)\exp{\eta^{T}u(x)}
-\]
+\begin{equation}
+p(x|\eta)=h\left(x\right)g\left(\eta\right)\exp\left\{ \eta^{T}u(x)\right\} 
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $\eta$
+\end_inset
+
+ are called the 
+\emph on
+natural parameters.
+ 
+\emph default
+Since the distribution is normalized 
+\begin_inset Formula 
+\begin{equation}
+g\left(\eta\right)\int h\left(x\right)\exp\left\{ \eta^{T}u(x)\right\} dx=1
+\end{equation}
 
 \end_inset
 
@@ -575,9 +772,9 @@ p(x|\eta)=h(x)g(\eta)\exp{\eta^{T}u(x)}
 \begin_layout Standard
 For the Bernoulli distribution
 \begin_inset Formula 
-\[
-p(x|\eta)=(1-\mu)\exp\Bigg\{\ln\Bigg(\frac{\mu}{1-\mu}\Bigg)x\Bigg\}
-\]
+\begin{equation}
+p(x|\eta)=\text{sigmoid}\left(-\eta\right)\exp\left(\eta x\right)
+\end{equation}
 
 \end_inset
 
@@ -592,7 +789,97 @@ where
 
 \end_layout
 
-\begin_layout Section
+\begin_layout Standard
+For the multinomial distribution
+\begin_inset Formula 
+\begin{equation}
+p\left(x|\eta\right)=\exp\left(\eta^{T}x\right)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $\eta_{k}=\ln\mu_{k}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Or 
+\begin_inset Formula 
+\begin{equation}
+p(x|\eta)=\left(1+\sum_{k=1}^{M-1}\exp\left(\eta_{k}\right)\right)^{-1}\exp\left(\eta^{T}x\right)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $\mu_{k}=\dfrac{\exp\left(\eta_{k}\right)}{1+\sum_{j}\exp\left(\eta_{j}\right)}$
+\end_inset
+
+, called 
+\emph on
+softmax 
+\emph default
+or 
+\emph on
+normalized exponential.
+\end_layout
+
+\begin_layout Subsection*
+2.4.1 Maximum likelihood and sufficient statistics
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset href
+LatexCommand href
+name "Sufficient statistics"
+target "https://en.wikipedia.org/wiki/Sufficient_statistic"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Take the gradient of both sides of (0.13)
+\begin_inset Formula 
+\[
+-\triangledown\ln g\left(\eta\right)=\mathbb{E}\left[u\left(x\right)\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Through MAL
+\begin_inset Formula 
+\[
+-\triangledown\ln g\left(\eta\right)=\frac{1}{N}\sum_{n=1}^{N}u\left(x_{n}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+2.4.1 Conjugate priors
+\end_layout
+
+\begin_layout Part*
 3.
  Linear Models for Regression
 \end_layout
@@ -622,7 +909,7 @@ input
  variables.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section*
 3.1 Linear Basis Function Models
 \end_layout
 
@@ -925,6 +1212,8 @@ Stochastic graidient descent (sequential gradient descent)
 \end_layout
 
 \begin_layout Standard
+
+\emph on
 \begin_inset CommandInset href
 LatexCommand href
 name "Gradient descent"
@@ -933,6 +1222,8 @@ literal "false"
 
 \end_inset
 
+
+\emph default
 , see the description.
 \end_layout
 
@@ -1061,7 +1352,6 @@ parameter shrinkage
 \begin_inset Graphics
 	filename /home/djn_dl/Desktop/GitHub/Commentarii/PRML/1524666731026.png
 	lyxscale 50
-	scale 50
 
 \end_inset
 
