@@ -4,7 +4,7 @@
 \begin_header
 \save_transient_properties true
 \origin unavailable
-\textclass paper
+\textclass book
 \begin_preamble
 \usepackage{ifxetex}
 \usepackage{ifluatex}\usepackage{fixltx2e}% provides \textsubscript
@@ -85,13 +85,13 @@ figs-within-sections
 \default_output_format default
 \output_sync 0
 \bibtex_command default
-\index_command default
+\index_command makeindex
 \paperfontsize default
 \spacing single
 \use_hyperref true
 \pdf_bookmarks true
 \pdf_bookmarksnumbered false
-\pdf_bookmarksopen false
+\pdf_bookmarksopen true
 \pdf_bookmarksopenlevel 1
 \pdf_breaklinks true
 \pdf_pdfborder true
@@ -361,7 +361,7 @@ Given a parameter
 \begin_layout Standard
 \begin_inset Formula 
 \begin{align*}
-E_{\theta}(\theta) & =E_{D}\underset{\text{posterior mean }}{\left[E_{\theta}\left[\theta|D\right]\right]}\\
+E_{\theta}(\theta) & =E_{D}\underbrace{\left[E_{\theta}\left[\theta|D\right]\right]}_{\text{posterior mean}}\\
 \text{var}_{\theta}[\theta] & =E_{D}\left[\text{var}_{\theta}\left[\theta|D\right]\right]+\text{var}_{D}\left[E_{\theta}\left[\theta|D\right]\right]
 \end{align*}
 
@@ -701,12 +701,12 @@ Robbins-Monro algorithm (Robbins and Monro,1951; Fukunaga,1990)
 2.3.6 Bayesian inference for the Gaussian
 \end_layout
 
-\begin_layout Standard
-variance 
+\begin_layout Paragraph
+Given variance 
 \begin_inset Formula $\sigma^{2}$
 \end_inset
 
- known, a set of 
+ and a set of 
 \begin_inset Formula $N$
 \end_inset
 
@@ -719,6 +719,313 @@ variance
 \end_inset
 
  to be inferred
+\end_layout
+
+\begin_layout Standard
+Take the prior distribution to be 
+\begin_inset Formula 
+\begin{equation}
+p\left(\mu\right)=\mathcal{N}\left(\mu|\mu_{0},\sigma_{0}^{2}\right)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The posterior distribution becomes
+\begin_inset Formula 
+\begin{equation}
+p\left(\mu|\mathrm{X}\right)=\mathcal{N}\left(\mu|\mu_{N},\sigma_{N}^{2}\right)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where
+\begin_inset Formula 
+\begin{align}
+\mu_{N} & =\frac{\sigma^{2}}{N\sigma_{0}^{2}+\sigma^{2}}\mu_{0}+\frac{N\sigma_{0}^{2}}{N\sigma_{0}^{2}+\sigma^{2}}\mu_{ML}\\
+\frac{1}{\sigma_{N}^{2}} & =\frac{1}{\sigma_{0}^{2}}+\frac{N}{\sigma^{2}}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Note how the paramter change as 
+\begin_inset Formula $N\rightarrow0/\infty,\sigma_{0}^{2}\rightarrow\infty$
+\end_inset
+
+: the precision increases and the posterior distribution becomes infintely
+ peaked around the MAL solution.
+\end_layout
+
+\begin_layout Subparagraph
+Sequential learning 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+p\left(\mu|D_{N}\right)\propto\underbrace{\left[p\left(\mu\right)\prod_{n=1}^{N-1}p\left(\mathrm{x_{n}|\mu}\right)\right]}_{p\left(\mu|D_{N-1}\right)}p\left(\mathrm{x_{N}|\mu}\right)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Given variance 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and a set of 
+\begin_inset Formula $N$
+\end_inset
+
+ observations 
+\begin_inset Formula $X=\left\{ x_{1},\dots,x_{N}\right\} $
+\end_inset
+
+, the mean 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ or 
+\begin_inset Formula $\lambda\equiv\dfrac{1}{\sigma^{2}}$
+\end_inset
+
+ to be inferred
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+\begin_inset CommandInset href
+LatexCommand href
+name "Gamma distribution"
+target "https://en.wikipedia.org/wiki/Gamma_distribution"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The likelihood
+\begin_inset Formula 
+\begin{equation}
+p\left(\mathrm{X|\lambda}\right)\propto\lambda^{N/2}\exp\left\{ -\frac{\lambda}{2}\sum_{n=1}^{N}\left(x_{n}-\mu\right)^{2}\right\} 
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The prior is a 
+\emph on
+gamma
+\emph default
+ distribution
+\begin_inset Formula 
+\begin{equation}
+\text{Gam}\left(\lambda|a,b\right)=\frac{1}{\Gamma\left(a\right)}b^{a}\lambda^{a-1}\exp\left(-b\lambda\right)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The posterior 
+\begin_inset Formula 
+\begin{equation}
+p\left(\lambda|\mathrm{X}\right)\propto\text{Gam}\left(\lambda|a_{N},b_{N}\right)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where
+\begin_inset Formula 
+\begin{align}
+a_{N} & =a_{0}+\frac{N}{2}\\
+b_{N} & =b_{0}+\frac{N}{2}\sigma_{ML}^{2}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Another prior distribution 
+\emph on
+can be inverse gamma
+\end_layout
+
+\begin_layout Paragraph
+Consider the case where both parameters are unknown
+\end_layout
+
+\begin_layout Standard
+The likelihood can be written as
+\begin_inset Formula 
+\begin{equation}
+p\left(\mu,\lambda\right)=\mathcal{N}\left(\mu|\mu_{0},\left(\beta\lambda\right)^{-1}\right)\text{Gam}\left(\lambda|a,b\right)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $\mu_{0}=c/\beta,a=1+\beta/2,b=d-c^{2}/2\beta$
+\end_inset
+
+.
+ This distribution is called the 
+\emph on
+normal-gamma
+\emph default
+ or 
+\emph on
+Gaussian-gamma
+\emph default
+ distribution.
+\end_layout
+
+\begin_layout Paragraph
+In the case the multivariate Gaussian distribution
+\end_layout
+
+\begin_layout Standard
+For known mean and unknown precision matrix, the conjugata prior is the
+ 
+\emph on
+Wishart 
+\emph default
+distribution.
+ If both are unknown, this goes to the 
+\emph on
+normal-Wishart
+\emph default
+ or 
+\emph on
+Gaussian-Wishart
+\emph default
+ distribution.
+\end_layout
+
+\begin_layout Subsection*
+2.3.9 Mixtures of Gaussians
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Mixture distributions
+\emph default
+: probabilistic models formed by taking linear combinations of more basic
+ distributions.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+mixture of Gaussians
+\emph default
+: 
+\begin_inset Formula 
+\begin{equation}
+p\left(x\right)=\sum_{k=1}^{K}\pi_{k}N\left(x|\mu_{k},\Sigma_{k}\right)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where each Gaussian density is called a 
+\emph on
+component 
+\emph default
+which has its own mean and covariance, and 
+\begin_inset Formula $\pi_{k}$
+\end_inset
+
+'s are called 
+\emph on
+mixing coefficients 
+\emph default
+with 
+\begin_inset Formula 
+\begin{align}
+\sum_{k=1}^{K}\pi_{k} & =1\\
+0\leq\pi_{k} & \leq1
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+From the sum and product rules
+\begin_inset Formula 
+\begin{equation}
+p\left(x\right)=\sum_{k=1}^{K}p\left(k\right)p\left(x|k\right)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+equivalent the definition.
+ The posterior distribution 
+\begin_inset Formula $p\left(x|k\right)$
+\end_inset
+
+ are called 
+\emph on
+responsibilities
+\emph default
+ and from the Bayes' theorem
+\begin_inset Formula 
+\[
+p\left(x|k\right)=\frac{\pi_{k}N\left(x|\mu_{k},\Sigma_{k}\right)}{\sum_{l}\pi_{l}N\left(x|\mu_{l},\Sigma_{l}\right)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The MAL for mixture Gaussians has no closed-form analytical solution.
+ iterative numerical optimzation techniques may be used or 
+\emph on
+expectation maximization.
 \end_layout
 
 \begin_layout Section*
@@ -840,6 +1147,8 @@ normalized exponential.
 \end_layout
 
 \begin_layout Standard
+
+\emph on
 \begin_inset CommandInset href
 LatexCommand href
 name "Sufficient statistics"
@@ -852,7 +1161,7 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-Take the gradient of both sides of (0.13)
+Take the gradient of both sides of the integrated exponential distribution
 \begin_inset Formula 
 \[
 -\triangledown\ln g\left(\eta\right)=\mathbb{E}\left[u\left(x\right)\right]
@@ -864,7 +1173,7 @@ Take the gradient of both sides of (0.13)
 \end_layout
 
 \begin_layout Standard
-Through MAL
+By MAL
 \begin_inset Formula 
 \[
 -\triangledown\ln g\left(\eta\right)=\frac{1}{N}\sum_{n=1}^{N}u\left(x_{n}\right)
@@ -877,6 +1186,43 @@ Through MAL
 
 \begin_layout Subsection*
 2.4.1 Conjugate priors
+\end_layout
+
+\begin_layout Standard
+For any member of the exponential family, there exists a conjugate prior
+ 
+\begin_inset Formula 
+\[
+p\left(\eta|\chi,\nu\right)=f\left(\chi,\nu\right)g\left(\eta\right)^{\nu}\exp\left\{ \nu\eta^{T}\chi\right\} 
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $f\left(\chi,\nu\right)$
+\end_inset
+
+ is a normalization coefficients.
+\end_layout
+
+\begin_layout Standard
+The posterior distribution becomes
+\begin_inset Formula 
+\[
+p\left(\eta|X,\chi,\nu\right)\propto g\left(\eta\right)^{\nu+N}\exp\left\{ \eta^{T}\left(\sum_{n=1}^{N}u\left(x_{n}\right)+\nu\chi\right)\right\} 
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+taking the same form, confirming conjugacy.
 \end_layout
 
 \begin_layout Part*
@@ -899,7 +1245,7 @@ target
 \end_inset
 
 -dimensional vector 
-\begin_inset Formula $\vec{x}$
+\begin_inset Formula $\mathrm{x}$
 \end_inset
 
  
@@ -927,7 +1273,7 @@ y(x,w)= & w_{0}+\sum\limits _{j=1}^{M-1}w_{j}\phi_{j}(x)\\
 
 \begin_layout Standard
 where 
-\begin_inset Formula $\phi_{j}(\vec{x})$
+\begin_inset Formula $\phi_{j}(\mathrm{x})$
 \end_inset
 
  are known as 
@@ -942,7 +1288,10 @@ basis functions
 \emph on
 bias
 \emph default
- parameter.
+ parameter
+\end_layout
+
+\begin_layout Standard
 \begin_inset Formula $w=(w_{0},...,w_{M-1})^{T}$
 \end_inset
 
@@ -963,8 +1312,7 @@ By using nonlinear basis functions, we allow the function
 \end_inset
 
 .
- Thus Eq.
- above is called a 
+ Thus the equation above is called a 
 \emph on
 linear model
 \emph default
@@ -1042,6 +1390,8 @@ Maximum Likelihood and least squares
 \end_layout
 
 \begin_layout Standard
+
+\emph on
 \begin_inset CommandInset href
 LatexCommand href
 name "Mode"
@@ -1059,7 +1409,7 @@ Assume
 \end_inset
 
 , where 
-\begin_inset Formula $t=y+\epsilon$
+\begin_inset Formula $t=y\left(w,x\right)+\epsilon$
 \end_inset
 
  and 
@@ -1072,7 +1422,7 @@ Assume
 \begin_layout Standard
 \begin_inset Formula 
 \begin{align*}
-\ln p(t|w,\beta)= & \dfrac{1}{2}\sum_{n=1}^{N}\{t_{n}-w^{T}\phi(x_{n})\}^{2}\\
+\ln p(t|w,\beta)= & \sum_{n=1}^{N}\ln N\left(t_{n}|w^{T}\phi\left(x_{n}\right),\beta^{-1}\right)\\
 = & \dfrac{N}{2}\ln\beta-\dfrac{N}{2}\ln(2\pi)-\beta E_{D}(w)
 \end{align*}
 
@@ -1087,7 +1437,7 @@ where
 \end_inset
 
  is the column vector of targets and 
-\begin_inset Formula $E_{D}(w)=\dfrac{1}{2}\sum\limits _{n=1}^{N}\{t_{n}-w^{T}\phi(x_{n})\}^{2}$
+\begin_inset Formula $E_{D}(w)=\dfrac{1}{2}\sum\limits _{n=1}^{N}\left\{ t_{n}-w^{T}\phi(x_{n})\right\} {}^{2}$
 \end_inset
 
 .
@@ -1095,6 +1445,23 @@ where
  conditional Gaussian noise distribution for a linear model is equivalent
  to minimizing a sum-of-squares error function.
  Take the gradient and set it to zero:
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $y=Ax\rightarrow\triangledown y=x$
+\end_inset
+
+, 
+\begin_inset Formula $W=x^{T}Ax\rightarrow\triangledown W=2x^{T}A$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1367,7 +1734,7 @@ Multiple outputs
 \end_layout
 
 \begin_layout Standard
-Of course we can decouple into multiple, 1``independent regression problems,
+Of course we can decouple into multiple independent regression problems,
  however there is an approach using the same set of basis functions so that
  y
 \end_layout
