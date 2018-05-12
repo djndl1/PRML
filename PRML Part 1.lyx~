@@ -98,8 +98,8 @@ figs-within-sections
 \pdf_colorlinks false
 \pdf_backref section
 \pdf_pdfusetitle false
-\papersize default
-\use_geometry false
+\papersize a4paper
+\use_geometry true
 \use_package amsmath 2
 \use_package amssymb 2
 \use_package cancel 2
@@ -124,8 +124,8 @@ figs-within-sections
 \shortcut idx
 \color #008000
 \end_index
-\secnumdepth 3
-\tocdepth 3
+\secnumdepth 2
+\tocdepth 2
 \paragraph_separation indent
 \paragraph_indentation default
 \is_math_indent 0
@@ -133,7 +133,7 @@ figs-within-sections
 \quotes_style english
 \dynamic_quotes 0
 \papercolumns 1
-\papersides 1
+\papersides 2
 \paperpagestyle default
 \tracking_changes false
 \output_changes false
@@ -144,7 +144,7 @@ figs-within-sections
 
 \begin_body
 
-\begin_layout Part*
+\begin_layout Chapter*
 2.
  Probability Distribution
 \end_layout
@@ -1225,7 +1225,7 @@ p\left(\eta|X,\chi,\nu\right)\propto g\left(\eta\right)^{\nu+N}\exp\left\{ \eta^
 taking the same form, confirming conjugacy.
 \end_layout
 
-\begin_layout Part*
+\begin_layout Chapter*
 3.
  Linear Models for Regression
 \end_layout
@@ -1734,7 +1734,7 @@ Multiple outputs
 \end_layout
 
 \begin_layout Standard
-Of course we can decouple into multiple, 1``independent regression problems,
+Of course we can decouple into multiple independent regression problems,
  however there is an approach using the same set of basis functions so that
  y
 \end_layout
@@ -1783,6 +1783,628 @@ W_{ML}=\Phi^{\dagger}T
 \begin_layout Standard
 For the case of arbitrary covariance matrices, see MAL of multi-variate
  Gaussian distribution.
+\end_layout
+
+\begin_layout Chapter*
+4.
+ Linear Models for Classification
+\end_layout
+
+\begin_layout Standard
+The goal in classification is to take an input vector 
+\begin_inset Formula $\mathrm{x}$
+\end_inset
+
+ and to assign it to one of 
+\begin_inset Formula $K$
+\end_inset
+
+ discrete classes 
+\begin_inset Formula $\mathcal{C}_{k}$
+\end_inset
+
+where 
+\begin_inset Formula $k=1,\dots,K$
+\end_inset
+
+.
+ The input space is divided into 
+\emph on
+decision regions
+\emph default
+ whose boundaries are called 
+\emph on
+decision boundaries
+\emph default
+ or 
+\emph on
+decision surfaces
+\emph default
+.
+ Data sets whose classes can be separated exactly by linear decision surfaces
+ are said to be 
+\emph on
+linearly separable.
+ 
+\emph default
+For probabilistic models, the most convenient is 1-of-
+\begin_inset Formula $K$
+\end_inset
+
+ coding scheme.
+\end_layout
+
+\begin_layout Standard
+There are three distinct approaches to the classification problem: the simplest
+ constructs a 
+\emph on
+discriminant function 
+\emph default
+that directly assigns each vector 
+\begin_inset Formula $\mathrm{x}$
+\end_inset
+
+ to a specfic class.
+ A more powerful approach models the conditional probability 
+\begin_inset Formula $p\left(\mathcal{C}_{k}|\mathrm{x}\right)$
+\end_inset
+
+ in an inference stage and then uses this distribution to make optimal decisions.
+ One way to the model is to model directly, the other is to adopt a generative
+ approach, i.e., to model the class-conditional densities 
+\begin_inset Formula $p\left(x|C_{k}\right)$
+\end_inset
+
+ and the prior probabilities 
+\begin_inset Formula $p\left(C_{k}\right)$
+\end_inset
+
+ for the classes and use Bayes' theorem
+\begin_inset Formula 
+\[
+p\left(C_{k}|x\right)=\frac{p\left(x|C_{k}\right)p\left(C_{k}\right)}{p\left(x\right)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Generalized Linear Models
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+y\left(x\right)=f\left(w^{T}x+w_{0}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $f\left(\cdot\right)$
+\end_inset
+
+ is an nonlinear 
+\emph on
+activatiion function
+\emph default
+ whereas its inverse is called a 
+\emph on
+link function
+\emph default
+.
+\end_layout
+
+\begin_layout Section*
+4.1 Discriminant Functions
+\end_layout
+
+\begin_layout Subsection*
+4.1.1 Two classes
+\end_layout
+
+\begin_layout Standard
+A linear dicriminant function
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+y\left(x\right)=w^{T}x+w_{0}=\tilde{w}^{T}\tilde{x}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $\tilde{x}=\left(x_{0},\mathrm{x}\right)$
+\end_inset
+
+ and 
+\begin_inset Formula $\tilde{w}=\left(w_{0},\mathrm{w}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If 
+\begin_inset Formula $y\left(x\right)\geq0,$
+\end_inset
+
+then 
+\begin_inset Formula $x\in C_{1}$
+\end_inset
+
+ otherwise 
+\begin_inset Formula $x\in C_{2}$
+\end_inset
+
+.
+ The decision boundary is defined by 
+\begin_inset Formula $y\left(x\right)=0$
+\end_inset
+
+, a 
+\begin_inset Formula $\left(D-1\right)$
+\end_inset
+
+-dimensional hyperplane within the 
+\begin_inset Formula $D$
+\end_inset
+
+-dimensional input space.
+ The 
+\emph on
+weight vector 
+\emph default
+
+\begin_inset Formula $w$
+\end_inset
+
+ is orthogonal to the hyperplane.
+ 
+\end_layout
+
+\begin_layout Standard
+Set the distance of a point from the hyperplane to zero, we have
+\begin_inset Formula 
+\[
+\frac{w^{T}x}{\left\Vert w\right\Vert }=-\frac{w_{0}}{\left\Vert w\right\Vert }
+\]
+
+\end_inset
+
+ Thus 
+\begin_inset Formula $w_{0}$
+\end_inset
+
+ determines the location of the decision surface.
+\end_layout
+
+\begin_layout Subsection*
+4.1.3 Least squares for classification
+\end_layout
+
+\begin_layout Standard
+One justification for using least squares in a general classfication problem
+ with 
+\begin_inset Formula $K$
+\end_inset
+
+ classes, with a 1-of-
+\begin_inset Formula $K$
+\end_inset
+
+ binary coding scheme for the target vector 
+\begin_inset Formula $t$
+\end_inset
+
+, is that it approximates the conditional expectation 
+\begin_inset Formula $E\left[t|x\right]$
+\end_inset
+
+ of the target values given the input vector.
+ For binary coding scheme, this conditional expectation expectation is given
+ by the vector of posterior class probabilities which, unfortuately, give
+ poor approximation.
+\end_layout
+
+\begin_layout Standard
+Each class 
+\begin_inset Formula $C_{k}$
+\end_inset
+
+ is described by ots own linear model so that 
+\begin_inset Formula 
+\[
+y_{k}\left(x\right)=w_{k}^{T}x+w_{k0}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $k=1,\dots,K$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\mathrm{y}\left(\mathrm{x}\right)=\tilde{\mathrm{W}}^{T}\tilde{\mathrm{x}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $\tilde{\mathrm{W}}_{\cdot,k}=\left(w_{k0},\mathrm{w}_{k}^{T}\right)^{T}$
+\end_inset
+
+and 
+\begin_inset Formula $\tilde{\mathrm{x}}=\left(1,\mathrm{\mathrm{x}^{T}}\right)^{T}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Consider a training data set 
+\begin_inset Formula $\left\{ x_{n},t_{n}\right\} $
+\end_inset
+
+ where 
+\begin_inset Formula $n=1,\dots,N$
+\end_inset
+
+, target matrix 
+\begin_inset Formula $T_{n,\cdot}=t_{n}^{T}$
+\end_inset
+
+, matrix 
+\begin_inset Formula $\tilde{\mathrm{X}}_{n,\cdot}=\tilde{\mathrm{x}_{n}^{T}}$
+\end_inset
+
+.
+ The sum-of-squares error function can be written as 
+\begin_inset Formula 
+\[
+E_{D}\left(\tilde{\mathrm{W}}\right)=\frac{1}{2}\text{Tr}\left\{ \left(\tilde{\mathrm{X}}\tilde{\mathrm{W}}-T\right)^{T}\left(\tilde{\mathrm{X}}\tilde{\mathrm{W}}-T\right)\right\} 
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Minimizing it, we obtain the solution for the coefficients
+\begin_inset Formula 
+\[
+\tilde{\mathrm{W}}=\left(\tilde{\mathrm{X}}^{T}\tilde{\mathrm{X}}\right)^{-1}\tilde{\mathrm{X}}^{T}T
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The least-squares solutions lack robustness to outliers.
+ The failure of least squares results from the assumption of the target
+ being Gaussian, while in a classification problem this is not the case.
+\end_layout
+
+\begin_layout Section*
+4.2 Probabilistic Generative Models
+\end_layout
+
+\begin_layout Standard
+We model the class-conditional densities 
+\begin_inset Formula $p\left(x|C_{k}\right)$
+\end_inset
+
+ as well as the class prior 
+\begin_inset Formula $p\left(C_{k}\right)$
+\end_inset
+
+, and then use them to compute the posterior probabilities 
+\begin_inset Formula $p\left(C_{k}|x\right)$
+\end_inset
+
+ through Bayes' theorem.
+\end_layout
+
+\begin_layout Paragraph
+The case of two classes
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+\begin_inset CommandInset href
+LatexCommand href
+name "Logistic function"
+target "https://en.wikipedia.org/wiki/Logistic_function#Mathematical_properties"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+p\left(C_{1}|x\right) & =\frac{p\left(x|C_{1}\right)p\left(C_{1}\right)}{p\left(x|C_{1}\right)p\left(C_{1}\right)+p\left(x|C_{2}\right)p\left(C_{2}\right)}\\
+ & =\frac{1}{1+\exp\left(-a\right) }=\text{sigmoid}\left(a\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula 
+\[
+a=\ln\frac{p\left(x|C_{1}\right)p\left(C_{1}\right)}{p\left(x|C_{2}\right)p\left(C_{2}\right)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+The case of 
+\begin_inset Formula $K>2$
+\end_inset
+
+ classes
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+\begin_inset CommandInset href
+LatexCommand href
+name "Softmax function"
+target "https://en.wikipedia.org/wiki/Softmax_function"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+p\left(C_{k}|x\right) & =\frac{p\left(x|C_{1}\right)p\left(C_{1}\right)}{\sum_{j}p\left(x|C_{j}\right)p\left(C_{j}\right)}\\
+ & =\underbrace{\frac{\exp\left(a_{k}\right)}{\sum_{j}\exp\left(a_{j}\right)}}_{\text{softmax}}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula 
+\[
+a_{k}=\ln p\left(x|C_{k}\right)p\left(C_{k}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+4.2.1 Continuous inputs
+\end_layout
+
+\begin_layout Standard
+Assume the class-conditional probabilities are all Gaussian
+\begin_inset Formula 
+\[
+p\left(x|C_{k}\right)=N\left(x|\mu_{k},\Sigma\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Consider the case of two-classes, the posterior becomes
+\begin_inset Formula 
+\[
+p\left(C_{1}|x\right)=\sigma\left(w^{T}x+w_{0}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where
+\begin_inset Formula 
+\begin{align*}
+w & =\Sigma^{-1}\left(\mu_{1}-\mu_{2}\right)\\
+w_{0} & =-\frac{1}{2}\mu_{1}\Sigma^{-1}\mu_{1}+\frac{1}{2}\mu_{2}\Sigma^{-1}\mu_{2}+\ln\frac{p\left(C_{1}\right)}{p\left(C_{2}\right)}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+And in the case of 
+\begin_inset Formula $K$
+\end_inset
+
+ classes
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+a_{k}(x)=w_{k}^{T}x+w_{k0}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+w_{k} & =\Sigma^{-1}\mu_{k}\\
+w_{k0} & =-\frac{1}{2}\mu_{k}^{T}\Sigma^{-1}\mu_{k}+\ln p\left(C_{k}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Note that the 
+\begin_inset Formula $a_{k}$
+\end_inset
+
+ here is not directly obtain from the second equation rather than the posterior
+ equation, thus the quadratic forms are cancelled.
+\end_layout
+
+\begin_layout Standard
+If weach class-conditional density 
+\begin_inset Formula $p\left(x|C_{k}\right)$
+\end_inset
+
+ has its own covariance matrix, the cancellations no longer occurs, giving
+ rise to a 
+\emph on
+quadratic discriminant.
+\end_layout
+
+\begin_layout Subsection*
+4.2.2 Maximum likelihood solution
+\end_layout
+
+\begin_layout Standard
+Here we maximize the likehood of the posterior.
+ Consider the case of two classes where the targets are scalars, either
+ 1 or 0.
+ Denoting the prior 
+\begin_inset Formula $p\left(C_{1}\right)=\pi$
+\end_inset
+
+ and 
+\begin_inset Formula $p\left(C_{2}\right)=1-\pi$
+\end_inset
+
+, the likelihood function is given by 
+\begin_inset Formula 
+\[
+p\left(\mathrm{t}|\pi,\mu_{1},\mu_{2},\Sigma\right)=\prod_{n=1}^{N}\left[\pi N\left(\mathrm{\mathrm{x}_{n}|\mu_{1},\Sigma}\right)\right]^{t_{n}}\left[\left(1-\pi\right)N\left(\mathrm{\mathrm{x}_{n}|\mu_{2},\Sigma}\right)\right]^{1-t_{n}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $\mathrm{t}=\left(t_{1},\dots,t_{N}\right)^{T}.$
+\end_inset
+
+ Since both Gaussians do not contain 
+\begin_inset Formula $\pi$
+\end_inset
+
+, it is easy to maximize w.r.t.
+ 
+\begin_inset Formula $\pi$
+\end_inset
+
+ which yields
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\pi=\frac{N_{1}}{N_{1}+N_{2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+w.r.t.
+ 
+\begin_inset Formula $\mu_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mu_{2}$
+\end_inset
+
+, we have
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\mu_{1} & =\frac{1}{N_{1}}\sum_{n=1}^{N}t_{n}x_{n}\\
+\mu_{2} & =\frac{1}{N_{2}}\sum_{n=1}^{N}\left(1-t_{n}\right)x_{n}
+\end{align*}
+
+\end_inset
+
+ which are the arithmetic mean of their respective class.
+\end_layout
+
+\begin_layout Standard
+w.r.t.
+ 
+\begin_inset Formula 
+\[
+\Sigma=S=\frac{N_{1}}{N}S_{1}+\frac{N_{2}}{N}S_{2}
+\]
+
+\end_inset
+
+
 \end_layout
 
 \end_body
