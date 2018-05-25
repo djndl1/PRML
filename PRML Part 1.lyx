@@ -72,7 +72,7 @@ figs-within-sections
 \font_roman "lmodern" "default"
 \font_sans "default" "default"
 \font_typewriter "default" "default"
-\font_math "auto" "auto"
+\font_math "default" "auto"
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
@@ -143,6 +143,519 @@ figs-within-sections
 \end_header
 
 \begin_body
+
+\begin_layout Chapter
+1.
+ Introduction 
+\end_layout
+
+\begin_layout Standard
+The problem of searching for patterns in data is a fundamental one and has
+ a long and successful history.
+ The field of pattern recognition is concerned with the automatic discovery
+ of regularities in data through the use of computer algorithms and with
+ the use of these regularities to take actions such as classifying the data
+ into different categories.
+\end_layout
+
+\begin_layout Standard
+A heuristic technique
+\begin_inset CommandInset href
+LatexCommand href
+name "heuristic technique"
+target "https://en.wikipedia.org/wiki/Heuristic"
+literal "false"
+
+\end_inset
+
+, often called simply a heuristic, is any approach to problem solving, learning,
+ or discovery that employs a practical method not guaranteed to be optimal
+ or perfect, but sufficient for the immediate goals.
+ The most fundamental heuristic is trial and error, which can be used in
+ everything from matching nuts and bolts to finding the values of variables
+ in algebra problems.
+\end_layout
+
+\begin_layout Standard
+training set: 
+\begin_inset Formula $\left\{ x_{1},...,x_{N}\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+target vector: 
+\begin_inset Formula $t$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+result expressed as a function 
+\begin_inset Formula $y(x)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+learning = training 
+\end_layout
+
+\begin_layout Standard
+generalization :the albility to categorize correctly new examples that differ
+ from those used for training
+\end_layout
+
+\begin_layout Standard
+preprocession: to make problem easier to solve, to speed up computation
+ 
+\end_layout
+
+\begin_layout Standard
+feature extraction 
+\end_layout
+
+\begin_layout Standard
+dimensionality reduction
+\end_layout
+
+\begin_layout Standard
+supervised learning 
+\end_layout
+
+\begin_layout Standard
+classification regression 
+\end_layout
+
+\begin_layout Standard
+unsupervised learning: input vectors 
+\begin_inset Formula $x$
+\end_inset
+
+ without any corresponding targht values 
+\end_layout
+
+\begin_layout Standard
+clustering: to discover groups of similar examples within the data 
+\end_layout
+
+\begin_layout Standard
+density estimation: to determine the distribution of data within the input
+ space 
+\end_layout
+
+\begin_layout Standard
+visualization: to project the data from a high-dimensional space down to
+ two or three dimensions
+\end_layout
+
+\begin_layout Standard
+reinforment learning: finding suitable actions to take in a given situation
+ in order to maximize a reward by a process of trial and error 
+\end_layout
+
+\begin_layout Standard
+e.g.
+ backgammon, a board position and the result of a dice throw as input, a
+ strong move as the output, only at the end of the game that the reward
+ is achieved.
+ 
+\end_layout
+
+\begin_layout Standard
+credit assignment 
+\end_layout
+
+\begin_layout Standard
+exploration: try out new kinds of actions to see how effective they are
+ exploitation: make use of actions that are known to yield a high reward
+ there is a trade-off between the above two
+\end_layout
+
+\begin_layout Section
+1.1 the example of polynomial curve fitting 
+\end_layout
+
+\begin_layout Standard
+P4.
+ problem description 
+\end_layout
+
+\begin_layout Standard
+Probability theory: provides a framework for expressing such uncertainty
+ in a precise and quantitative manner Decision theory: to exploit this probabili
+stic representation in order to make predictions that are optimal according
+ to appropriate criteria.
+\end_layout
+
+\begin_layout Standard
+using a polynomial function of the form 
+\begin_inset Formula $y(x,\overrightarrow{w})=\sum_{j=0}^{M}\left\{ w_{j}x^{j}\right\} $
+\end_inset
+
+ , linear in the unknown parameters, having important properties, thus called
+ 
+\backslash
+textit{linear models}.
+ The determination of the values of the coefficients can be done by minimizing
+ an error function that measures the misfit between the function and the
+ training set data points.
+ (P5 1.2)
+\end_layout
+
+\begin_layout Standard
+choosing the order M leads to MODEL COMPARISON/SELECTION 
+\end_layout
+
+\begin_layout Standard
+over-fitting, RMS error is introduced to compare different sizes of data.
+ (P6 1.3)
+\end_layout
+
+\begin_layout Standard
+A power series expansion of the sine function contains terms of all orders,
+ however, in this case, the coefficients don't go as a power series should
+ be.
+\end_layout
+
+\begin_layout Standard
+the over-fitting problem become less severe as the size of the data set
+ increases.
+ Another way to say this is that the larger the data set, the more complex
+ (in other words more flexible) the model that we can afford to fit to the
+ data.
+ (P8 table 1.1)
+\end_layout
+
+\begin_layout Standard
+adopting a Bayesian approach to avoid the over-fitting problem (P9) (Sec.
+ 1.2.6)
+\end_layout
+
+\begin_layout Paragraph
+Using relatively complex and flexible models
+\end_layout
+
+\begin_layout Standard
+regularization: adds a penalty term ot the error function to discourage
+ the coefficients from reaching large values, a problem that came forth
+ in the method above (P1.4), known as shrinkage in statistics; weight decay
+ in the context of neural networks.
+\end_layout
+
+\begin_layout Section
+1.2 Probability Theory
+\end_layout
+
+\begin_layout Standard
+uncertainty: a key concept in the field of pattern recognition 
+\end_layout
+
+\begin_layout Standard
+probability theory: a consistent framework for the quantification and manipulati
+on of uncertainty
+\end_layout
+
+\begin_layout Standard
+Some readings 
+\end_layout
+
+\begin_layout Standard
+https://en.wikipedia.org/wiki/Principle_of_indifference
+\end_layout
+
+\begin_layout Standard
+https://en.wikipedia.org/wiki/Classical_definition_of_probability
+\end_layout
+
+\begin_layout Standard
+The probability of an event is the ratio of the number of cases favorable
+ to it, to the number of all cases possible when nothing leads us to expect
+ that any one of these cases should occur more than any other, which renders
+ them, for us, equally possible.
+ Criticism
+\end_layout
+
+\begin_layout Standard
+https://en.wikipedia.org/wiki/Bayesian_statistics
+\end_layout
+
+\begin_layout Standard
+Bayesian methods are characterized by concepts and procedures as follows:
+\end_layout
+
+\begin_layout Standard
+The use of random variables, or more generally unknown quantities, to model
+ all sources of uncertainty in statistical models including uncertainty
+ resulting from lack of information (see also aleatoric and epistemic uncertaint
+y).
+ The need to determine the prior probability distribution taking into account
+ the available (prior) information.
+ The sequential use of Bayes' formula: when more data become available,
+ calculate the posterior distribution using Bayes' formula; subsequently,
+ the posterior distribution becomes the next prior.
+ While for the frequentist a hypothesis is a proposition (which must be
+ either true or false), so that the frequentist probability of a hypothesis
+ is either 0 or 1, in Bayesian statistics the probability that can be assigned
+ to a hypothesis can also be in a range from 0 to 1 if the truth value is
+ uncertain.
+\end_layout
+
+\begin_layout Standard
+https://en.wikipedia.org/wiki/Frequentist_probability 
+\end_layout
+
+\begin_layout Standard
+it defines an event's probability as the limit of its relative frequency
+ in a large number of trials.
+ In the frequentist interpretation, probabilities are discussed only when
+ dealing with well-defined random experiments (or random samples).
+ The set of all possible outcomes of a random experiment is called the sample
+ space of the experiment.
+ An event is defined as a particular subset of the sample space to be considered.
+ For any given event, only one of two possibilities may hold: it occurs
+ or it does not.
+ The relative frequency of occurrence of an event, observed in a number
+ of repetitions of the experiment, is a measure of the probability of that
+ event.
+ This is the core conception of probability in the frequentist interpretation.
+ A claim of the frequentist approach is that in the "long run," as the number
+ of trials approaches infinity, the relative frequency will converge exactly
+ to the true probability 
+\end_layout
+
+\begin_layout Standard
+As an interpretation, it is not in conflict with the mathematical axiomatization
+ of probability theory; rather, it provides guidance for how to apply mathematic
+al probability theory to real-world situations.
+ It offers distinct guidance in the construction and design of practical
+ experiments, especially when contrasted with the Bayesian interpretation.
+ As to whether this guidance is useful, or is apt to mis-interpretation,
+ has been a source of controversy.
+ Particularly when the frequency interpretation of probability is mistakenly
+ assumed to be the only possible basis for frequentist inference.
+\end_layout
+
+\begin_layout Standard
+https://en.wikipedia.org/wiki/Probability_interpretations 
+\end_layout
+
+\begin_layout Standard
+The terminology of this topic is rather confusing, in part because probabilities
+ are studied within a variety of academic fields.
+ The word "frequentist" is especially tricky.
+ To philosophers it refers to a particular theory of physical probability,
+ one that has more or less been abandoned.
+ To scientists, on the other hand, "frequentist probability" is just another
+ name for physical (or objective) probability.
+ Those who promote Bayesian inference view "frequentist statistics" as an
+ approach to statistical inference that recognises only physical probabilities.
+ Also the word "objective", as applied to probability, sometimes means exactly
+ what "physical" means here, but is also used of evidential probabilities
+ that are fixed by rational constraints, such as logical and epistemic probabili
+ties.
+ 
+\end_layout
+
+\begin_layout Standard
+Para 2.
+ P21 
+\end_layout
+
+\begin_layout Standard
+maximum likelihood, error function, bootstrap P23.
+ 
+\end_layout
+
+\begin_layout Standard
+the multiplicative inverse of variance - precision $
+\backslash
+beta$ independent and identically distributed, abre to i.i.d.
+ The advantage of taking the log of a likelihood function - to avoid the
+ underflowing of the numerical precision of the computer 
+\end_layout
+
+\begin_layout Standard
+bias and overfittings P28 bias-variance decomposition
+\end_layout
+
+\begin_layout Paragraph
+Revisiting curve fitting - a new approach
+\end_layout
+
+\begin_layout Standard
+The sum-of-squares error function has arisen as a consequence of maximizing
+ likelyhood under the assumption of a Gaussian noise distribution.
+ The result is a probabilistic model, expressed in terms of the predictive
+ distribution that gives the probability distribution over t rather than
+ simply a point estimate.
+ P30 1.64 
+\end_layout
+
+\begin_layout Standard
+a more bayesian approach: variables that control the distribution of model
+ parameter - HYPERPARAMETERS (1.65) - (1.67) MAP - maximum posterior, give
+ the distribution of 
+\begin_inset Formula $w$
+\end_inset
+
+, i.e.
+ its parameter 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ and the distribution of 
+\begin_inset Formula $t$
+\end_inset
+
+, we have 
+\begin_inset Formula $p(w|x,t,\alpha,\beta)\propto p(t|x,w,\beta)p(w|\alpha)$
+\end_inset
+
+, which finally leads to an equivalence between MAP and sum-of-squares error
+ function with a regularization parameter.
+\end_layout
+
+\begin_layout Paragraph
+A fully Bayesian approach
+\end_layout
+
+\begin_layout Standard
+Given data set containing x and t, and a new point x, evaluate the corresponding
+ t, 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ and 
+\begin_inset Formula $\beta$
+\end_inset
+
+ are already assumed
+\end_layout
+
+\begin_layout Section
+1.3 Model Selection 
+\end_layout
+
+\begin_layout Paragraph
+Test and validation
+\end_layout
+
+\begin_layout Standard
+If data is plentiful, then one approach is simply to use some of the available
+ data to train a range of models, or a given model with a range of values
+ for its complexity parameters, and then to compare them on independent
+ data, sometimes called a validation set, and select the one having the
+ best predictive performance.
+ If the model design is iterated many times using a limited size data set,
+ then some over fitting to the validation data can occur and so it may be
+ necessary to keep aside a third test set on which the performance of the
+ selected model is finally evaluated.
+\end_layout
+
+\begin_layout Standard
+While in many applications, not much data is available.
+ 
+\end_layout
+
+\begin_layout Standard
+Cross-validation P32-P33 https://en.wikipedia.org/wiki/Cross-validation_%28statist
+ics%29 leave-one-out technique drawback: computationally expensive.
+ AIC: akaike information criterion, attempting to correct for the bias of
+ maximum likelihood
+\end_layout
+
+\begin_layout Section
+1.4 The Curse of Dimensionality 
+\end_layout
+
+\begin_layout Standard
+Think about what a general M-order polynomial with D variables would look
+ like: the number of coefficients is proportional to $D^M$ The problem of
+ the volume of the surface between $r=1$ and $r=1-
+\backslash
+epsilon$; in spaces of high dimensionality, most of the volume of a sphere
+ is concentrated in a thin shell near the surface.
+ Gaussian probability density under different dimensionality D Figure 1.23
+ P37 
+\end_layout
+
+\begin_layout Standard
+Dimensionality characteristics of real data 1.
+ confined to a region of the space having lower effective dimensionality
+ 2.
+ having smoothness properties so that small changes in the input variables
+ will produce small changes in the target variables, local-interpolation-like
+ techniques are used to make predictions.
+\end_layout
+
+\begin_layout Section
+1.5 Decision Theory 
+\end_layout
+
+\begin_layout Standard
+to make optimal decisons in situations involving uncertainty such as those
+ encountered in pattern recognition Problem description P39 
+\end_layout
+
+\begin_layout Standard
+Minimizing the misclassification rate 
+\end_layout
+
+\begin_layout Standard
+decision regions $R_k$ corresponding to $C_k$ decision boundaries/surfaces
+ each x should be assigned to the class having the largest posterior probability
+ $p(C_k|x)$ 
+\end_layout
+
+\begin_layout Standard
+Minimizing the expected loss to minimize the total loss incurred loss/cost
+ function, utility function, loss matrix 
+\end_layout
+
+\begin_layout Standard
+The Reject option it may be appropriate to use an automatic system to classify
+ those X-ray images for which there is little doubt as to the correct class,
+ while leaving a human expert to classify the more ambiguous cases.
+ introducing a threshold Inference and decision inference stage: in which
+ we use training data to learn a model for $p(C_k|x)$ decision stage: make
+ class assignments discriminant function: solve both problems together and
+ simply learn a function that maps inputs x directly into decisions.
+ 
+\end_layout
+
+\begin_layout Standard
+generative models(most demanding), discriminative models, discriminant function(
+even simpler) (P43) ??? 
+\end_layout
+
+\begin_layout Standard
+situations where the posterior probabilities are required to be computed
+ P45 
+\end_layout
+
+\begin_layout Standard
+loss functions for regression the conditional average of t conditioned on
+ x , known as the regression function
+\end_layout
+
+\begin_layout Section
+1.6 Information theory 
+\end_layout
+
+\begin_layout Standard
+the amound of information can be viewed as the "degree of surprise" the
+ concept of entropy: the average amount of information P50, two examples
+ 
+\end_layout
+
+\begin_layout Standard
+noiseless coding theorem: the entropy is a lower bound on the number of
+ bits needed to transmit the state of a random variable 
+\end_layout
 
 \begin_layout Chapter
 2.
@@ -4403,9 +4916,305 @@ algorithm.
 \begin_layout Standard
 One notable feature of the K-means algorithm is that at each iteration,
  every data point is assigned uniquely to one, and only one, of the clusters.
- Whereas some data points will be much closer to a particular centre μk
+ Whereas some data points will be much closer to a particular centre 
+\begin_inset Formula $\mu_{k}$
+\end_inset
+
  than to any other centre, there may be other data points that lie roughly
  midway between cluster centres.
+\end_layout
+
+\begin_layout Section
+9.2 Mixtures of Gaussians
+\end_layout
+
+\begin_layout Standard
+A linear superposition of Gaussians
+\begin_inset Formula 
+\[
+p\left(x\right)=\sum_{k=1}^{N}\pi_{k}N\left(x|\mu_{k},\Sigma_{k}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Define a 
+\begin_inset Formula $K$
+\end_inset
+
+-dimensional binary random variable 
+\begin_inset Formula $\text{z}$
+\end_inset
+
+ haing a 1-of-
+\begin_inset Formula $K$
+\end_inset
+
+ representation satisfying 
+\begin_inset Formula $z_{k}\in\left\{ 0,1\right\} $
+\end_inset
+
+ and 
+\begin_inset Formula $\sum_{k}z_{k}=1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p\left(z_{k}=1\right)=\pi_{k}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Since 
+\begin_inset Formula $0\leq\pi_{k}\leq1$
+\end_inset
+
+ and 
+\begin_inset Formula $\sum_{k=1}^{K}\pi_{k}=1$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p\left(z\right)=\prod_{k=1}^{K}\pi_{k}^{z_{k}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Since 
+\begin_inset Formula $p\left(x|z_{k}=1\right)=N\left(x|_{k},\Sigma_{k}\right)$
+\end_inset
+
+,
+\begin_inset Formula 
+\[
+p\left(\mathrm{x}|\mathrm{z}\right)=\prod_{k=1}^{K}N\left(\mathrm{x}|\mu_{k},\Sigma_{k}\right)^{z_{k}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+thus
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p\left(x\right)=\sum_{z}p\left(z\right)p\left(x|z\right)=\sum_{k=1}^{K}\pi_{k}N\left(x|\mu_{k},\Sigma_{k}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+It follows that every observed data point 
+\begin_inset Formula $\mathrm{x_{n}}$
+\end_inset
+
+ has a corresponding latent variable 
+\begin_inset Formula $\mathrm{z_{n}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\gamma\left(z_{k}\right)\equiv p\left(z_{k}=1|x\right) & =\frac{p\left(z_{k}=1\right)p\left(\mathrm{x}|z_{k}=1\right)}{\sum_{j=1}^{K}p\left(z_{j}=1\right)p\left(\mathrm{x}|z_{j}=1\right)}\\
+ & =\frac{\pi_{k}N\left(x|\mu_{k},\Sigma_{k}\right)}{\sum_{j=1}^{K}\pi_{j}N\left(x|\mu_{j},\Sigma_{j}\right)}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+viewed as the 
+\emph on
+responsibility 
+\emph default
+that component 
+\begin_inset Formula $k$
+\end_inset
+
+ takes for explaining the observation 
+\begin_inset Formula $\mathrm{x}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+9.2.1 Maximum likelihood
+\end_layout
+
+\begin_layout Standard
+Data matrx 
+\begin_inset Formula $\mathrm{X}^{N\times D}$
+\end_inset
+
+ and latent variable matrix 
+\begin_inset Formula $\mathrm{Z}^{N\times D}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If we assume that the data points are drawn independently from the distribution,
+ then we can express the Gaussian mixture model for this i.i.d.
+ data set, the log-likelihood function is given by
+\begin_inset Formula 
+\[
+\ln p\left(\mathrm{X}|\pi,\mu,\Sigma\right)=\sum_{n=1}^{N}\ln\left\{ \sum_{k=1}^{K}\pi_{k}N\left(x_{n}|\mu_{k},\Sigma_{k}\right)\right\} 
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+9.2.2 EM for Gaussian mixtures
+\end_layout
+
+\begin_layout Standard
+An elegant and powerful method for finding maximum likelihood solutions
+ for models with latent variables is called the 
+\emph on
+expectation-maximization 
+\emph default
+algorithm.
+ Setting the derivatives of the likelihood function above w.r.t.
+ 
+\begin_inset Formula $\mu_{k}$
+\end_inset
+
+ to zero, we obtain
+\begin_inset Formula 
+\[
+0=-\sum_{n=1}^{N}\underbrace{\frac{\pi_{k}N\left(x|\mu_{k},\Sigma_{k}\right)}{\sum_{j=1}^{K}\pi_{j}N\left(x|\mu_{j},\Sigma_{j}\right)}}_{\gamma\left(z_{nk}\right)}\Sigma_{k}\left(x_{n}-\mu_{k}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Rearrange 
+\begin_inset Formula 
+\[
+\mu_{k}=\frac{1}{N_{k}}\sum_{n=1}^{N}\gamma\left(z_{nk}\right)\mathrm{x}_{n}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where
+\begin_inset Formula 
+\[
+N_{k}=\sum_{n=1}^{N}\gamma\left(z_{nk}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+w.r.t.
+\begin_inset Formula 
+\[
+\Sigma_{k}=\frac{1}{N_{k}}\sum_{n=1}^{N}\gamma\left(z_{nk}\right)\left(x_{n}-\mu_{k}\right)\left(x_{n}-\mu_{k}\right)^{T}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finally, we maximize the likelihood function subject to 
+\begin_inset Formula $\sum_{k=1}^{K}\pi_{k}=1$
+\end_inset
+
+ w.r.t.
+ 
+\begin_inset Formula $\pi_{k}$
+\end_inset
+
+ 
+\begin_inset Formula 
+\[
+\ln p\left(\mathrm{X}|\pi,\mu,\Sigma\right)+\lambda\left(\sum_{k=1}^{K}\pi_{k}-1\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+giving 
+\begin_inset Formula $\lambda=-N$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\pi_{k}=\frac{N_{k}}{N}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+These results are not closed-form, but the EM algorithm do find a solution
+ to the MAL problem.
+ In the E step, we use these parameters to compute the posterior probabilities
+ or responsibilities.
+ In the M step, re-estimate the means, covariance and mixing coefficients
+ using the above results.
+\end_layout
+
+\begin_layout Standard
+Note that the EM algorithm takes many more iterations to reach (approximate)
+ convergence compared with the K-means algorithm, and that each cycle requires
+ significantly more computation.
+ It is therefore common to run the K-means algo- rithm in order to find
+ a suitable initialization for a Gaussian mixture model that is subsequently
+ adapted using EM.
 \end_layout
 
 \end_body
