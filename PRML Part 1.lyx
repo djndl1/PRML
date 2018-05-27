@@ -124,6 +124,10 @@ figs-within-sections
 \shortcut idx
 \color #008000
 \end_index
+\leftmargin 2cm
+\topmargin 2cm
+\rightmargin 2cm
+\bottommargin 2cm
 \secnumdepth -2
 \tocdepth 3
 \paragraph_separation indent
@@ -2504,7 +2508,7 @@ The goal in classification is to take an input vector
 \begin_inset Formula $\mathcal{C}_{k}$
 \end_inset
 
-where 
+ where 
 \begin_inset Formula $k=1,\dots,K$
 \end_inset
 
@@ -2593,7 +2597,7 @@ where
 
  is an nonlinear 
 \emph on
-activatiion function
+activation function
 \emph default
  whereas its inverse is called a 
 \emph on
@@ -2677,7 +2681,11 @@ weight vector
 \end_layout
 
 \begin_layout Standard
-Set the distance of a point from the hyperplane to zero, we have
+Set 
+\begin_inset Formula $x=0$
+\end_inset
+
+, we have
 \begin_inset Formula 
 \[
 \frac{w^{T}x}{\left\Vert w\right\Vert }=-\frac{w_{0}}{\left\Vert w\right\Vert }
@@ -2690,6 +2698,108 @@ Set the distance of a point from the hyperplane to zero, we have
 \end_inset
 
  determines the location of the decision surface.
+\end_layout
+
+\begin_layout Subsection
+4.1.2 Multiple classes
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $K$
+\end_inset
+
+-classes
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+One-versus-the-rest:
+\emph default
+ the use of 
+\begin_inset Formula $K-1$
+\end_inset
+
+ classifers each of which solves a two-class problem of separating points
+ in a particular class 
+\begin_inset Formula $C_{k}$
+\end_inset
+
+ from points not in that class.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+One-versus-one: 
+\emph default
+introduces 
+\begin_inset Formula $K\left(K-1\right)/2$
+\end_inset
+
+ binary discriminant functions, one for every possible pair of classes.
+\end_layout
+
+\begin_layout Standard
+The above two approaches run into the problem of ambiguous regions.
+\end_layout
+
+\begin_layout Standard
+To avoid the difficulty, consider a single 
+\begin_inset Formula $K$
+\end_inset
+
+-class discriminant comprising 
+\begin_inset Formula $K$
+\end_inset
+
+ linear functions of the form
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+y_{k}\left(\text{x}\right)=\text{w}_{k}^{T}\text{x}+w_{k0}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+and then assign a point 
+\begin_inset Formula $x$
+\end_inset
+
+ to class 
+\begin_inset Formula $C_{k}$
+\end_inset
+
+ if 
+\begin_inset Formula $y_{k}\left(x\right)>y_{j}\left(x\right)$
+\end_inset
+
+ for all 
+\begin_inset Formula $j\neq k.$
+\end_inset
+
+ The decision boundary between 
+\begin_inset Formula $C_{k}$
+\end_inset
+
+ and 
+\begin_inset Formula $C_{j}$
+\end_inset
+
+ is given by 
+\begin_inset Formula $y_{k}\left(x\right)=y_{j}\left(x\right)$
+\end_inset
+
+.
+ The decison regions of such a discriminant can be proved singly connected
+ and convex.
 \end_layout
 
 \begin_layout Subsection
@@ -2725,7 +2835,7 @@ Each class
 \begin_inset Formula $C_{k}$
 \end_inset
 
- is described by ots own linear model so that 
+ is described by its own linear model so that 
 \begin_inset Formula 
 \[
 y_{k}\left(x\right)=w_{k}^{T}x+w_{k0}
@@ -2778,7 +2888,7 @@ Consider a training data set
 \end_inset
 
 , matrix 
-\begin_inset Formula $\tilde{\mathrm{X}}_{n,\cdot}=\tilde{\mathrm{x}_{n}^{T}}$
+\begin_inset Formula $\tilde{\mathrm{X}}_{n,\cdot}=\tilde{\text{x}}_{n}^{T}$
 \end_inset
 
 .
@@ -2806,9 +2916,160 @@ Minimizing it, we obtain the solution for the coefficients
 \end_layout
 
 \begin_layout Standard
+If we use a 
+\begin_inset Formula $1$
+\end_inset
+
+-of-
+\begin_inset Formula $K$
+\end_inset
+
+ coding scheme for 
+\begin_inset Formula $K$
+\end_inset
+
+ classes, the elements of 
+\begin_inset Formula $y\left(x\right)$
+\end_inset
+
+ will sum to 1 for any value of 
+\begin_inset Formula $x$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
 The least-squares solutions lack robustness to outliers.
  The failure of least squares results from the assumption of the target
  being Gaussian, while in a classification problem this is not the case.
+\end_layout
+
+\begin_layout Subsection
+4.1.4 Fisher's linear discriminant
+\end_layout
+
+\begin_layout Standard
+One way to view a linear classification model is in terms of dimensionality
+ reduction.
+ Consider first the case of two classes, and suppose we project 
+\begin_inset Formula $D$
+\end_inset
+
+-dimensional input vector 
+\begin_inset Formula $x$
+\end_inset
+
+ to one dimension using
+\begin_inset Formula 
+\[
+y=\text{w}^{T}\text{x}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The idea proposed by Fisher is to maximize a function that will give a large
+ separation between the projected class means while also giving a small
+ variance within each class, thereby minimizing the class overlap.
+ Define the mean and variance of each class
+\begin_inset Formula 
+\begin{align*}
+m_{1} & =\frac{1}{N_{1}}\sum_{n\in C_{1}}x_{n}\quad m_{2}=\frac{1}{N_{2}}\sum_{n\in C_{2}}x_{n}\\
+s_{k}^{2} & =\sum_{n\in C_{k}}\left(y_{n}-w^{T}m_{k}\right)^{2}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $y_{n}=w^{T}x_{n}$
+\end_inset
+
+.
+ The Fisher criterion is defined by
+\begin_inset Formula 
+\[
+J\left(w\right)=\frac{w^{T}(m_{2}-m_{1})}{s_{1}^{2}+s_{2}^{2}}=\frac{w^{T}S_{B}w}{w^{T}S_{W}w}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $S_{B}=\left(m_{2}-m_{1}\right)(m_{2}-m_{1})^{T},$
+\end_inset
+
+ and 
+\begin_inset Formula $S_{W}=S_{1}+S_{2}$
+\end_inset
+
+, 
+\begin_inset Formula $S_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $S_{2}$
+\end_inset
+
+ are the within-class covariance matrix before transformation.
+ Differentiate 
+\begin_inset Formula $J\left(w\right)$
+\end_inset
+
+ w.r.t.
+ 
+\begin_inset Formula $w$
+\end_inset
+
+,
+\begin_inset Formula 
+\[
+\left(w^{T}S_{B}w\right)S_{W}w=\left(w^{T}S_{W}w\right)S_{B}w
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ignore the magnitude of 
+\begin_inset Formula $w$
+\end_inset
+
+, then 
+\begin_inset Formula 
+\[
+w\propto S_{W}^{-1}(m_{2}-m_{1})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Known as 
+\emph on
+Fishers's linear discriminant,
+\emph default
+ not strictly a discriminant though.
+ The projected data can subsequently be used to construct a discriminant
+ by choosing a threshold 
+\begin_inset Formula $y_{0}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section
