@@ -3010,19 +3010,10 @@ where
 \end_inset
 
  and 
-\begin_inset Formula $S_{W}=S_{1}+S_{2}$
+\begin_inset Formula $S_{W}=\sum_{j}\sum_{n\in C_{j}}\left(x_{n}-m_{j}\right)\left(x_{n}-m_{j}\right)^{T}$
 \end_inset
 
-, 
-\begin_inset Formula $S_{1}$
-\end_inset
-
- and 
-\begin_inset Formula $S_{2}$
-\end_inset
-
- are the within-class covariance matrix before transformation.
- Differentiate 
+, Differentiate 
 \begin_inset Formula $J\left(w\right)$
 \end_inset
 
@@ -4068,7 +4059,7 @@ whose Gram matrix in general is not p.s.d but useful in practice.
 \begin_layout Standard
 \begin_inset CommandInset href
 LatexCommand href
-name "Lagrange Multiplier"
+name "Lagrange Multiplier on Wiki"
 target "https://en.wikipedia.org/wiki/Lagrange_multiplier#Single_constraint"
 literal "true"
 
@@ -4080,7 +4071,7 @@ literal "true"
 \begin_layout Standard
 \begin_inset CommandInset href
 LatexCommand href
-name "KKT Conditions"
+name "KKT Conditions on Wiki"
 target "https://en.wikipedia.org/wiki/Karush–Kuhn–Tucker_conditions"
 literal "true"
 
@@ -4353,7 +4344,7 @@ literal "false"
 \begin_layout Standard
 \begin_inset Formula 
 \begin{align*}
-\underset{a}{\text{arg}\text{max}}L_{D}(a) & =\sum\limits _{n=1}^{N}a_{n}-\dfrac{1}{2}\sum\limits _{n=1}^{N}\sum\limits _{m=1}^{N}a_{m}a_{n}t_{m}t_{n}k(x_{n},x_{m})
+\underset{a}{\text{arg}\text{max }}L_{D}(a) & =\sum\limits _{n=1}^{N}a_{n}-\dfrac{1}{2}\sum\limits _{n=1}^{N}\sum\limits _{m=1}^{N}a_{m}a_{n}t_{m}t_{n}k(x_{n},x_{m})
 \end{align*}
 
 \end_inset
@@ -4640,7 +4631,7 @@ soft margin.
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\underset{w,b,\xi_{n}}{\text{arg min}}C\sum_{n=1}^{N}\xi_{n}+\frac{1}{2}\left\Vert w\right\Vert ^{2}
+\underset{w,b,\xi_{n}}{\text{arg min }}C\sum_{n=1}^{N}\xi_{n}+\frac{1}{2}\left\Vert w\right\Vert ^{2}
 \]
 
 \end_inset
@@ -4666,8 +4657,8 @@ where
 \begin_inset Formula $C>0$
 \end_inset
 
- controls the trade-ff between minimizing training errors and controlling
- mdoel complexity.
+ controls the trade-off between minimizing training errors and controlling
+ model complexity.
  In the limit 
 \begin_inset Formula $C\rightarrow\infty$
 \end_inset
@@ -4902,6 +4893,211 @@ SMO).
 
 \begin_layout Subsection
 7.1.2 Relation to logistic regression
+\end_layout
+
+\begin_layout Subsection
+7.1.4 SVMs for Regression 
+\end_layout
+
+\begin_layout Standard
+A regularized error function 
+\begin_inset Formula 
+\[
+\frac{1}{2}\sum_{n=1}^{N}\left\{ y_{n}-t_{n}\right\} ^{2}+\frac{\lambda}{2}\left\Vert w\right\Vert ^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+is replaced by an 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+-
+\emph on
+insensitive error function 
+\emph default
+to obtain sparse solutions, yielding
+\begin_inset Formula 
+\[
+C\sum_{n=1}^{N}E_{\epsilon}\left(y\left(x_{n}\right)-t_{n}\right)+\frac{1}{2}\left\Vert w\right\Vert ^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where, for example
+\begin_inset Formula 
+\[
+E_{\epsilon}\left(y\left(x_{n}\right)-t_{n}\right)=\begin{cases}
+0, & \text{if }\left|y\left(x\right)-t\right|<\epsilon\\
+\left|y\left(x\right)-t\right|-\epsilon & \text{otherwise}
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Two slack variables are introduced for each data point
+\begin_inset Formula 
+\[
+\xi_{n}\geq0\quad\hat{\xi}_{n}\geq0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+and 
+\begin_inset Formula 
+\begin{align*}
+\xi_{n} & >0\thinspace\text{for \ensuremath{t_{n}-y\left(x_{n}\right)>\epsilon}}\\
+\hat{\xi_{n}} & >0\thinspace\text{for \ensuremath{t_{n}-y\left(x_{n}\right)<-\epsilon}}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+then the corresponding conditions are 
+\begin_inset Formula 
+\begin{align*}
+t_{n} & \leq y\left(x_{n}\right)+\epsilon+\xi_{n}\\
+t_{n} & \geq y\left(x_{n}\right)-\epsilon-\hat{\xi}_{n}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The error function for support vector regression can be written as 
+\begin_inset Formula 
+\[
+C\sum_{n=1}^{N}\left(\xi_{n}+\hat{\xi}_{n}\right)+\frac{1}{2}\left\Vert w\right\Vert ^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+the Lagrangian function is 
+\begin_inset Formula 
+\[
+L=C\sum_{n=1}^{N}\left(\xi_{n}+\hat{\xi}_{n}\right)+\frac{1}{2}\left\Vert w\right\Vert ^{2}-\sum_{n=1}^{N}\left(\mu_{n}\xi_{n}+\hat{\mu}_{n}\hat{\xi}_{n}\right)-\sum_{n=1}^{N}a_{n}\left(\epsilon+\xi_{n}+y_{n}-t_{n}\right)-\sum_{n=1}^{n}\hat{a}_{n}\left(\epsilon+\hat{\xi}_{n}-y_{n}+t_{n}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Stationarity
+\begin_inset Formula 
+\begin{align*}
+\text{w.r.t }w & \rightarrow w=\sum_{n=1}^{N}\left(a_{n}-\hat{a}_{n}\right)\phi\left(x_{n}\right)\\
+\text{w.r.t }b & \rightarrow\sum_{n=1}^{N}\left(a_{n}-\hat{a}_{n}\right)=0\\
+\text{w.r.t }\xi_{n} & \rightarrow a_{n}+\mu_{n}=C\\
+\text{w.r.t }\hat{\xi}_{n} & \rightarrow\hat{a}_{n}+\hat{\mu}_{n}=C
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Substitute them back into the Lagrangian function
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\tilde{L}\left(a,\hat{a}\right)=-\frac{1}{2}\sum_{n=1}^{N}\sum_{m=1}^{N}\left(a_{n}-\hat{a}_{n}\right)\left(a_{m}-\hat{a}_{m}\right)k\left(\text{x}_{n},\mathrm{x}_{m}\right)-\epsilon\sum_{n=1}^{N}\left(a_{n}+\hat{a}_{n}\right)+\sum_{n=1}^{N}\left(a_{n}-\hat{a}_{n}\right)t_{n}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+and now 
+\begin_inset Formula 
+\begin{align*}
+0 & \leq a_{n}\leq C\\
+0 & \leq\hat{a}_{n}\leq C
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+and the linear model now becomes
+\begin_inset Formula 
+\[
+y\left(x\right)=\sum_{n=1}^{N}\left(a_{n}-\hat{a}_{n}\right)k\left(x,x_{n}\right)+b
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Complementary slackness
+\begin_inset Formula 
+\begin{align*}
+a_{n}\left(\epsilon+\xi_{n}+y_{n}-t_{n}\right) & =0\\
+\hat{a}_{n}\left(\epsilon+\hat{\xi}_{n}-y_{n}+t_{n}\right) & =0\\
+\left(C-a_{n}\right)\xi_{n} & =0\\
+\left(C-\hat{a}_{n}\right)\hat{\xi}_{n} & =0
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+implies that 
+\begin_inset Formula $a_{n}$
+\end_inset
+
+ can only be nonzero if the data point lies on or above the upper boundary
+ of the 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+-tube, similar for 
+\begin_inset Formula $\hat{a}_{n}$
+\end_inset
+
+.
+ The support vectors are those data points that lie on or outside the 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+-tube.
 \end_layout
 
 \begin_layout Chapter
@@ -5476,6 +5672,78 @@ Note that the EM algorithm takes many more iterations to reach (approximate)
  It is therefore common to run the K-means algo- rithm in order to find
  a suitable initialization for a Gaussian mixture model that is subsequently
  adapted using EM.
+\end_layout
+
+\begin_layout Chapter
+14.
+ Combining Models
+\end_layout
+
+\begin_layout Standard
+It is often found that improved performance can be obtained by combining
+ multiple models together in some way, instead of just using a single model
+ in isolation.
+ Training 
+\begin_inset Formula $L$
+\end_inset
+
+ different models and then making predictions using the average of the predictio
+ns made by each model is an example.
+ Such combinations of models are called 
+\emph on
+committees
+\emph default
+.
+ One important variant of the committee method is 
+\emph on
+boosting, 
+\emph default
+involving training multiple models in sequence in which the error function
+ used to train a particular model depends on the performance of the previous
+ models.
+ An alternative form of model combination is to select one of the models
+ to make the prediction, and different models become responsible for making
+ predictions in different regions of input space.
+ One widely used framework of this kind is known as 
+\emph on
+decision tree
+\emph default
+.
+\end_layout
+
+\begin_layout Subsection
+14.4 Tree-based Models
+\end_layout
+
+\begin_layout Standard
+There are various simple, but widely used, models that work by partitioning
+ the input space into cuboid regions, whose edges are aligned with the axes,
+ and then assigning a simple model to each region.
+ They can be viewed as a model combination method in which only one model
+ is responsible for making predictions at any given point in input space.
+ The process of selecting a specific model, given a new input x, can be
+ described by a sequential decision making process corresponding to the
+ traversal of a binary tree.
+\end_layout
+
+\begin_layout Standard
+Here a particular tree-based framework 
+\emph on
+classification and regression trees
+\emph default
+ or 
+\emph on
+CART 
+\emph default
+is discussed.
+ In order to learn such a model from a training set, the structure of the
+ tree must be determined, including which input variable is chosen at each
+ node to form the split criterion as well as the value of the threshold
+ parameter 
+\begin_inset Formula $\theta_{i}$
+\end_inset
+
+ for the split and, of course, the predictive variable within each region.
 \end_layout
 
 \end_body
