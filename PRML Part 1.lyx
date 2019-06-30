@@ -5,74 +5,23 @@
 \save_transient_properties true
 \origin unavailable
 \textclass book
-\begin_preamble
-\usepackage{ifxetex}
-\usepackage{ifluatex}\usepackage{fixltx2e}% provides \textsubscript
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
-  \else % if luatex or xelatex
-  \ifxetex
-    \usepackage{mathspec}
-\else
-    \fi
-  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
-\fi
-% use upquote if available, for straight quotes in verbatim environments
-\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-% use microtype if available
-\IfFileExists{microtype.sty}{%
-\usepackage[]{microtype}
-\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
-}{}
-\PassOptionsToPackage{hyphens}{url} % url is loaded by hyperref
-
-\urlstyle{same}  % don't use monospace font for urls
-\usepackage{grffile}
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-\IfFileExists{parskip.sty}{%
-\usepackage{parskip}
-}{% else
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-}
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-
-% Redefines (sub)paragraphs to behave more like sections
-\ifx\paragraph\undefined\else
-\let\oldparagraph\paragraph
-\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
-\fi
-\ifx\subparagraph\undefined\else
-\let\oldsubparagraph\subparagraph
-\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
-\fi
-
-% set default figure placement to htbp
-
-\def\fps@figure{htbp}
-\end_preamble
 \use_default_options true
 \begin_modules
-theorems-ams
 eqs-within-sections
 figs-within-sections
+algorithm2e
+theorems-ams-chap-bytype
+theorems-ams-extended-chap-bytype
 \end_modules
 \maintain_unincluded_children false
 \language english
 \language_package none
 \inputencoding utf8
 \fontencoding T1
-\font_roman "lmodern" "default"
-\font_sans "default" "default"
-\font_typewriter "default" "default"
-\font_math "default" "auto"
+\font_roman "tgtermes" "default"
+\font_sans "tgheros" "default"
+\font_typewriter "tgcursor" "default"
+\font_math "auto" "auto"
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
@@ -100,15 +49,15 @@ figs-within-sections
 \pdf_pdfusetitle false
 \papersize a4paper
 \use_geometry true
-\use_package amsmath 2
-\use_package amssymb 2
-\use_package cancel 2
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
 \use_package esint 1
-\use_package mathdots 2
-\use_package mathtools 2
-\use_package mhchem 2
-\use_package stackrel 2
-\use_package stmaryrd 2
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
 \use_package undertilde 1
 \cite_engine basic
 \cite_engine_type default
@@ -128,7 +77,7 @@ figs-within-sections
 \topmargin 2cm
 \rightmargin 2cm
 \bottommargin 2cm
-\secnumdepth -2
+\secnumdepth 3
 \tocdepth 3
 \paragraph_separation indent
 \paragraph_indentation default
@@ -149,8 +98,7 @@ figs-within-sections
 \begin_body
 
 \begin_layout Chapter
-1.
- Introduction 
+Introduction 
 \end_layout
 
 \begin_layout Standard
@@ -160,24 +108,6 @@ The problem of searching for patterns in data is a fundamental one and has
  of regularities in data through the use of computer algorithms and with
  the use of these regularities to take actions such as classifying the data
  into different categories.
-\end_layout
-
-\begin_layout Standard
-A heuristic technique
-\begin_inset CommandInset href
-LatexCommand href
-name "heuristic technique"
-target "https://en.wikipedia.org/wiki/Heuristic"
-literal "false"
-
-\end_inset
-
-, often called simply a heuristic, is any approach to problem solving, learning,
- or discovery that employs a practical method not guaranteed to be optimal
- or perfect, but sufficient for the immediate goals.
- The most fundamental heuristic is trial and error, which can be used in
- everything from matching nuts and bolts to finding the values of variables
- in algebra problems.
 \end_layout
 
 \begin_layout Standard
@@ -208,121 +138,76 @@ result expressed as a function
 learning = training 
 \end_layout
 
-\begin_layout Standard
-generalization :the albility to categorize correctly new examples that differ
+\begin_layout Description
+generalization the albility to categorize correctly new examples that differ
  from those used for training
 \end_layout
 
-\begin_layout Standard
-preprocession: to make problem easier to solve, to speed up computation
- 
+\begin_layout Description
+preprocession to make problem easier to solve, to speed up computation,
+ feature extraction, dimensionality reduction
 \end_layout
 
-\begin_layout Standard
-feature extraction 
+\begin_layout Description
+supervised
+\begin_inset space ~
+\end_inset
+
+learning classification regression
 \end_layout
 
-\begin_layout Standard
-dimensionality reduction
-\end_layout
+\begin_layout Description
+unsupervised
+\begin_inset space ~
+\end_inset
 
-\begin_layout Standard
-supervised learning 
-\end_layout
-
-\begin_layout Standard
-classification regression 
-\end_layout
-
-\begin_layout Standard
-unsupervised learning: input vectors 
+learning input vectors 
 \begin_inset Formula $x$
 \end_inset
 
- without any corresponding targht values 
+ without any corresponding targht values
 \end_layout
 
-\begin_layout Standard
-clustering: to discover groups of similar examples within the data 
+\begin_layout Description
+clustering to discover groups of similar examples within the data 
 \end_layout
 
-\begin_layout Standard
-density estimation: to determine the distribution of data within the input
- space 
+\begin_layout Description
+density
+\begin_inset space ~
+\end_inset
+
+estimation to determine the distribution of data within the input space
+ 
 \end_layout
 
-\begin_layout Standard
-visualization: to project the data from a high-dimensional space down to
+\begin_layout Description
+visualization to project the data from a high-dimensional space down to
  two or three dimensions
 \end_layout
 
-\begin_layout Standard
-reinforment learning: finding suitable actions to take in a given situation
+\begin_layout Description
+reinforment learning finding suitable actions to take in a given situation
  in order to maximize a reward by a process of trial and error 
 \end_layout
 
-\begin_layout Standard
-e.g.
- backgammon, a board position and the result of a dice throw as input, a
- strong move as the output, only at the end of the game that the reward
- is achieved.
- 
-\end_layout
-
-\begin_layout Standard
-credit assignment 
-\end_layout
-
-\begin_layout Standard
-exploration: try out new kinds of actions to see how effective they are
- exploitation: make use of actions that are known to yield a high reward
- there is a trade-off between the above two
-\end_layout
-
 \begin_layout Section
-1.1 the example of polynomial curve fitting 
+the example of polynomial curve fitting
 \end_layout
 
 \begin_layout Standard
-P4.
- problem description 
-\end_layout
-
-\begin_layout Standard
-Probability theory: provides a framework for expressing such uncertainty
- in a precise and quantitative manner Decision theory: to exploit this probabili
-stic representation in order to make predictions that are optimal according
- to appropriate criteria.
-\end_layout
-
-\begin_layout Standard
-using a polynomial function of the form 
-\begin_inset Formula $y(x,\overrightarrow{w})=\sum_{j=0}^{M}\left\{ w_{j}x^{j}\right\} $
-\end_inset
-
- , linear in the unknown parameters, having important properties, thus called
- 
-\backslash
-textit{linear models}.
- The determination of the values of the coefficients can be done by minimizing
- an error function that measures the misfit between the function and the
- training set data points.
- (P5 1.2)
-\end_layout
-
-\begin_layout Standard
-choosing the order M leads to MODEL COMPARISON/SELECTION 
-\end_layout
-
-\begin_layout Standard
-over-fitting, RMS error is introduced to compare different sizes of data.
- (P6 1.3)
-\end_layout
-
-\begin_layout Standard
-A power series expansion of the sine function contains terms of all orders,
- however, in this case, the coefficients don't go as a power series should
- be.
+The problem of model comparison and model selection arises is an important
+ concept.
+ To determine a suitable value for the model complexity, we can separate
+ a 
+\emph on
+validation set, 
+\emph default
+also called a 
+\emph on
+hold-out
+\emph default
+ set, used to optimize the model complexity.
 \end_layout
 
 \begin_layout Standard
@@ -331,40 +216,55 @@ the over-fitting problem become less severe as the size of the data set
  Another way to say this is that the larger the data set, the more complex
  (in other words more flexible) the model that we can afford to fit to the
  data.
- (P8 table 1.1)
+ The least squares approach to finding the model parameters represents a
+ specific case of maximum likelihood and the overfitting problem can be
+ understood as a general property of maximum likelihood.
+ By adopting a Bayesian approach, the overfitting problem can be avoided.
 \end_layout
 
 \begin_layout Standard
-adopting a Bayesian approach to avoid the over-fitting problem (P9) (Sec.
- 1.2.6)
-\end_layout
-
-\begin_layout Paragraph
-Using relatively complex and flexible models
-\end_layout
-
-\begin_layout Standard
-regularization: adds a penalty term ot the error function to discourage
- the coefficients from reaching large values, a problem that came forth
- in the method above (P1.4), known as shrinkage in statistics; weight decay
+One technique that is often used to control the overfitting phenomenon is
+ that of regularization, which involves adding a penalty term to the error
+ function, also known as 
+\emph on
+shrinkage
+\emph default
+ in statistics, 
+\emph on
+weight decay
+\emph default
  in the context of neural networks.
 \end_layout
 
 \begin_layout Section
-1.2 Probability Theory
+Probability Theory
 \end_layout
 
 \begin_layout Standard
-uncertainty: a key concept in the field of pattern recognition 
+Uncertainty is a key concept in the field of pattern recognition.
+ It arises bot hthrough noise on measurements as well as though the finite
+ size of data sets.
+\end_layout
+
+\begin_layout Description
+Probability
+\begin_inset space ~
+\end_inset
+
+theory a consistent framework for the quantification and manipulation of
+ uncertainty
+\end_layout
+
+\begin_layout Subsection
+Bayesian probabilities
 \end_layout
 
 \begin_layout Standard
-probability theory: a consistent framework for the quantification and manipulati
-on of uncertainty
-\end_layout
-
-\begin_layout Standard
-Some readings 
+Consider an uncertain event.
+ Our assessment of the problem will affect the actions we take.
+ We quantify our expression of uncertainty and make precise revisions of
+ uncertainty in light of new evidence as well as subsequently t obe able
+ to take optimal actions or decisions as a consequence.
 \end_layout
 
 \begin_layout Standard
@@ -597,7 +497,12 @@ Dimensionality characteristics of real data 1.
 \end_layout
 
 \begin_layout Section
-1.5 Decision Theory 
+1.5 Decision Theory
+\end_layout
+
+\begin_layout Description
+Decision theory: to exploit this probabilistic representation in order to
+ make predictions that are optimal according to appropriate criteria.
 \end_layout
 
 \begin_layout Standard
@@ -606,7 +511,7 @@ to make optimal decisons in situations involving uncertainty such as those
 \end_layout
 
 \begin_layout Standard
-Minimizing the misclassification rate 
+Minimizing the misclassification rate
 \end_layout
 
 \begin_layout Standard
@@ -617,7 +522,7 @@ decision regions $R_k$ corresponding to $C_k$ decision boundaries/surfaces
 
 \begin_layout Standard
 Minimizing the expected loss to minimize the total loss incurred loss/cost
- function, utility function, loss matrix 
+ function, utility function, loss matrix
 \end_layout
 
 \begin_layout Standard
@@ -633,12 +538,12 @@ The Reject option it may be appropriate to use an automatic system to classify
 
 \begin_layout Standard
 generative models(most demanding), discriminative models, discriminant function(
-even simpler) (P43) ??? 
+even simpler) (P43) ???
 \end_layout
 
 \begin_layout Standard
 situations where the posterior probabilities are required to be computed
- P45 
+ P45
 \end_layout
 
 \begin_layout Standard
@@ -647,7 +552,7 @@ loss functions for regression the conditional average of t conditioned on
 \end_layout
 
 \begin_layout Section
-1.6 Information theory 
+1.6 Information theory
 \end_layout
 
 \begin_layout Standard
@@ -658,7 +563,7 @@ the amound of information can be viewed as the "degree of surprise" the
 
 \begin_layout Standard
 noiseless coding theorem: the entropy is a lower bound on the number of
- bits needed to transmit the state of a random variable 
+ bits needed to transmit the state of a random variable
 \end_layout
 
 \begin_layout Chapter
@@ -2418,8 +2323,10 @@ parameter shrinkage
 
 \begin_layout Standard
 \begin_inset Graphics
-	filename /home/djn_dl/Desktop/GitHub/Commentarii/PRML/1524666731026.png
+	filename 1524666731026.png
 	lyxscale 50
+	scale 35
+	rotateOrigin center
 
 \end_inset
 
