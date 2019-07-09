@@ -242,7 +242,7 @@ Probability Theory
 
 \begin_layout Standard
 Uncertainty is a key concept in the field of pattern recognition.
- It arises bot hthrough noise on measurements as well as though the finite
+ It arises both through noise on measurements as well as though the finite
  size of data sets.
 \end_layout
 
@@ -297,6 +297,72 @@ Consider an uncertain event.
  The dramatic imporvements in the speed and memory capacity of computers,
  opened the door to the practical use of Bayesian techniques in an impressive
  range of problem domains.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset href
+LatexCommand href
+name "Generative models, discriminative models"
+target "https://en.wikipedia.org/wiki/Generative_model"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Given an observable variable 
+\begin_inset Formula $X$
+\end_inset
+
+ and a target variable 
+\begin_inset Formula $Y$
+\end_inset
+
+, a
+\emph on
+ generative model is a statistical model 
+\emph default
+of the joint probability distribution on 
+\begin_inset Formula $X\times Y$
+\end_inset
+
+, 
+\begin_inset Formula $P\left(X,Y\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+A discriminative model is a model of the conditional probability of the
+ target 
+\begin_inset Formula $Y$
+\end_inset
+
+, given an observation 
+\begin_inset Formula $x$
+\end_inset
+
+, symbolically 
+\begin_inset Formula $P\left(Y|X=x\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Classfiers computed without using a probability models are also referred
+ to loosely as 
+\begin_inset Quotes eld
+\end_inset
+
+discriminative
+\begin_inset Quotes erd
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsection
