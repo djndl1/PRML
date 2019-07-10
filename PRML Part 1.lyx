@@ -139,7 +139,7 @@ learning = training
 \end_layout
 
 \begin_layout Description
-generalization the albility to categorize correctly new examples that differ
+generalization the ability to categorize correctly new examples that differ
  from those used for training
 \end_layout
 
@@ -165,7 +165,7 @@ learning input vectors
 \begin_inset Formula $x$
 \end_inset
 
- without any corresponding targht values
+ without any corresponding target values
 \end_layout
 
 \begin_layout Description
@@ -187,8 +187,12 @@ visualization to project the data from a high-dimensional space down to
 \end_layout
 
 \begin_layout Description
-reinforment learning finding suitable actions to take in a given situation
- in order to maximize a reward by a process of trial and error 
+reinforcement
+\begin_inset space ~
+\end_inset
+
+learning finding suitable actions to take in a given situation in order
+ to maximize a reward by a process of trial and error 
 \end_layout
 
 \begin_layout Section
@@ -292,16 +296,16 @@ Consider an uncertain event.
  One common critism of the Bayesian approach is that the prior distribution
  is often selected on the basis of mathematical convenience rather than
  as a reflection of any prior beliefs.
- Bayesian methods based on poor choices of prior cna give poor results with
+ Bayesian methods based on poor choices of prior can give poor results with
  high confidence.
- The dramatic imporvements in the speed and memory capacity of computers,
+ The dramatic improvements in the speed and memory capacity of computers,
  opened the door to the practical use of Bayesian techniques in an impressive
  range of problem domains.
 \end_layout
 
 \begin_layout Example*
 Reconsider the curve fitting problem.
- Assume the corrsponding value of 
+ Assume the corresponding value of 
 \begin_inset Formula $t$
 \end_inset
 
@@ -363,7 +367,7 @@ p\left(\mathbf{w}|\mathbf{x},\mathbf{t},\alpha,\beta\right)\propto p\left(\mathb
 
 \begin_layout Example*
 By maximizing the posterior distribution (MAP), we obtain the regularized
- sum-of-squres error funciton.
+ sum-of-squares error function.
 \end_layout
 
 \begin_layout Example*
@@ -442,7 +446,7 @@ A discriminative model is a model of the conditional probability of the
 \end_layout
 
 \begin_layout Itemize
-Classfiers computed without using a probability models are also referred
+Classifiers computed without using a probability models are also referred
  to loosely as 
 \begin_inset Quotes eld
 \end_inset
@@ -518,93 +522,148 @@ The Curse of Dimensionality
 \end_layout
 
 \begin_layout Standard
-Think about what a general M-order polynomial with D variables would look
- like: the number of coefficients is proportional to $D^M$ The problem of
- the volume of the surface between $r=1$ and $r=1-
-\backslash
-epsilon$; in spaces of high dimensionality, most of the volume of a sphere
- is concentrated in a thin shell near the surface.
- Gaussian probability density under different dimensionality D Figure 1.23
- P37 
+Think about what a general 
+\begin_inset Formula $M$
+\end_inset
+
+-order polynomial with 
+\begin_inset Formula $D$
+\end_inset
+
+ variables would look like: the number of coefficients is proportional to
+ 
+\begin_inset Formula $D^{M}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-Dimensionality characteristics of real data 1.
- confined to a region of the space having lower effective dimensionality
- 2.
- having smoothness properties so that small changes in the input variables
+The problem of the volume of the surface between 
+\begin_inset Formula $r=1$
+\end_inset
+
+ and 
+\begin_inset Formula $r=1-\epsilon$
+\end_inset
+
+ shows that our geometrical intuitions formed in a space of three dimensions,
+ can fail badly in a space of higher dimensionality.
+ In spaces of high dimensionality, most of the volume of a sphere is concentrate
+d in a thin shell near the surface.
+ In a high-dimensional space, most the probability mass of a Gaussian is
+ located 
+\begin_inset CommandInset href
+LatexCommand href
+name "within a thin shell at a specific radius"
+target "https://research.wmz.ninja/articles/2018/03/the-counterintuitive-behavior-of-high-dimensional-gaussian-distributions.html"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Dimensionality characteristics of real data
+\end_layout
+
+\begin_layout Enumerate
+confined to a region of the space having lower effective dimensionality
+\end_layout
+
+\begin_layout Enumerate
+having smoothness properties so that small changes in the input variables
  will produce small changes in the target variables, local-interpolation-like
  techniques are used to make predictions.
 \end_layout
 
 \begin_layout Section
-1.5 Decision Theory
+Decision Theory
 \end_layout
 
 \begin_layout Description
-Decision theory: to exploit this probabilistic representation in order to
- make predictions that are optimal according to appropriate criteria.
+Decision
+\begin_inset space ~
+\end_inset
+
+theory: to exploit this probabilistic representation in order to make prediction
+s that are optimal according to appropriate criteria.
 \end_layout
 
 \begin_layout Standard
-to make optimal decisons in situations involving uncertainty such as those
- encountered in pattern recognition Problem description P39 
+\begin_inset Separator plain
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Minimizing the misclassification rate
-\end_layout
 
-\begin_layout Standard
-decision regions $R_k$ corresponding to $C_k$ decision boundaries/surfaces
- each x should be assigned to the class having the largest posterior probability
- $p(C_k|x)$ 
-\end_layout
-
-\begin_layout Standard
-Minimizing the expected loss to minimize the total loss incurred loss/cost
- function, utility function, loss matrix
-\end_layout
-
-\begin_layout Standard
-The Reject option it may be appropriate to use an automatic system to classify
- those X-ray images for which there is little doubt as to the correct class,
- while leaving a human expert to classify the more ambiguous cases.
- introducing a threshold Inference and decision inference stage: in which
- we use training data to learn a model for $p(C_k|x)$ decision stage: make
- class assignments discriminant function: solve both problems together and
- simply learn a function that maps inputs x directly into decisions.
- 
-\end_layout
-
-\begin_layout Standard
-generative models(most demanding), discriminative models, discriminant function(
-even simpler) (P43) ???
-\end_layout
-
-\begin_layout Standard
-situations where the posterior probabilities are required to be computed
- P45
-\end_layout
-
-\begin_layout Standard
-loss functions for regression the conditional average of t conditioned on
- x , known as the regression function
 \end_layout
 
 \begin_layout Section
-1.6 Information theory
+Information theory
 \end_layout
 
 \begin_layout Standard
-the amound of information can be viewed as the "degree of surprise" the
- concept of entropy: the average amount of information P50, two examples
- 
+Consider a discrete random variable 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ The amount of information of 
+\begin_inset Formula $x$
+\end_inset
+
+ can be viewed as the 
+\begin_inset Quotes eld
+\end_inset
+
+degree of surprise
+\begin_inset Quotes erd
+\end_inset
+
+ on learning the value of 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ Define 
+\begin_inset Formula 
+\[
+h\left(x\right)=-\log_{2}p\left(x\right)
+\]
+
+\end_inset
+
+where the negative sign ensures that information is nonnegative.
+ Low probability events correspond to high information content.
 \end_layout
 
-\begin_layout Standard
-noiseless coding theorem: the entropy is a lower bound on the number of
- bits needed to transmit the state of a random variable
+\begin_layout Definition
+entropy
+\end_layout
+
+\begin_layout Definition
+The average amount of information of a random variable is given by
+\begin_inset Formula 
+\[
+H\left[x\right]=-\sum_{x}p\left(x\right)\log_{2}p\left(x\right).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proposition
+noiseless coding theorem
+\end_layout
+
+\begin_layout Proposition
+The entropy is a lower bound on the number of bits needed to transmit the
+ state of a random variable.
 \end_layout
 
 \begin_layout Chapter
