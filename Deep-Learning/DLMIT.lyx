@@ -1,0 +1,1198 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass book
+\use_default_options true
+\begin_modules
+algorithm2e
+theorems-ams-chap-bytype
+theorems-ams-extended-chap-bytype
+tabs-within-sections
+figs-within-sections
+eqs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "tgtermes" "default"
+\font_sans "tgheros" "default"
+\font_typewriter "tgcursor" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures false
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1.5cm
+\topmargin 1.5cm
+\rightmargin 1.5cm
+\bottommargin 1.5cm
+\secnumdepth 3
+\tocdepth 4
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+The definitions in this note may not be taken as formal definitions, mere
+ explanations.
+\end_layout
+
+\begin_layout Chapter
+Intro
+\end_layout
+
+\begin_layout Standard
+Abstract and formal tasks that are among the most diffuclt mental undertakings
+ for a human being are among the easiest for a computer.
+\end_layout
+
+\begin_layout Definition
+Knowledge base approach
+\end_layout
+
+\begin_layout Definition
+A computer reason about statements in formal languages automatically using
+ logical inference rules.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+machine learning
+\end_layout
+
+\begin_layout Definition
+the capability for AI systems to acquire knowledge by extracting patterns
+ from raw data.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Machine learning algorithms rely heavily on the representation of data,
+ what the features are.
+\end_layout
+
+\begin_layout Definition
+representation learning
+\end_layout
+
+\begin_layout Definition
+Using machine learning to discover not only the mapping form representation
+ to output but also the representation itself.
+\end_layout
+
+\begin_layout Example*
+Autoencoder: the combination of an encoer that converts the input data into
+ a different representation and a decoder that converts it back into the
+ original format.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+factors of variation
+\end_layout
+
+\begin_layout Definition
+sources of incluence that help us make sense of the rich variability in
+ the data
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+Deep learning
+\end_layout
+
+\begin_layout Definition
+Deep learning learns the right represetation for the data, allowing the
+ computer to learn a multi-stp computer program.
+\end_layout
+
+\begin_layout Standard
+The depth of computational graph or the depth of the graph describing how
+ concepts are related to each other (the depth of the probabilistic modeling
+ graph).
+\end_layout
+
+\begin_layout Example*
+multilayer perceptron
+\end_layout
+
+\begin_layout Standard
+There are two main ways of measuring the depth of a model.
+ The first view is based on the number of sequential instructions that must
+ be executed to evaluate the architecture.
+ Another approach, used by deep probabilistic models, regards the depth
+ of a model as being not the depth of the computational graph but the depth
+ of the graph describing how concepts are related to each other.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename pasted6.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part
+Mathematical Basics
+\end_layout
+
+\begin_layout Chapter
+Numerical computation basics
+\end_layout
+
+\begin_layout Section
+Overflow and underflow
+\end_layout
+
+\begin_layout Standard
+Underflow occurs when numbers near zero are rounded to zero.
+ Many functions behave qualitatively differently when their argument is
+ zero rather than a small positive number.
+\end_layout
+
+\begin_layout Standard
+Overflow occurs when numbers with large magnitutde are approximated as 
+\begin_inset Formula $\infty$
+\end_inset
+
+ or 
+\begin_inset Formula $-\infty$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Example*
+\begin_inset CommandInset href
+LatexCommand href
+name "Softmax"
+target "https://en.wikipedia.org/wiki/Softmax_function"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example*
+The standard (unit) softmax function 
+\begin_inset Formula $\sigma\colon\mathbb{R}^{K}\to\mathbb{R}^{K}$
+\end_inset
+
+ 
+\begin_inset Formula 
+\[
+\sigma\left(\mathbf{z}\right)_{i}=\frac{e^{z_{i}}}{\sum_{j=1}^{K}e^{z_{j}}}\quad\text{for }i=1,\dots,K\text{ and }\mathbf{z}=\left(z_{1},\dots,z_{K}\right)\in\mathbb{R}^{K}
+\]
+
+\end_inset
+
+The output of the softmax function can be used to represent a categorical
+ distribution, a probability distribution over 
+\begin_inset Formula $K$
+\end_inset
+
+ different outcomes.
+\end_layout
+
+\begin_layout Example*
+Given a very large or small 
+\begin_inset Formula $z_{i}$
+\end_inset
+
+, 
+\begin_inset Formula $e^{z_{i}}$
+\end_inset
+
+ may go to infinity.
+ The value of the softmax function is not changed analytically by adding
+ or subtracting a scalar from the input, which leads to the solution 
+\begin_inset Formula $z=x-\max_{i}x_{i}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Poor Condition
+\end_layout
+
+\begin_layout Definition
+Conditioning
+\end_layout
+
+\begin_layout Definition
+the rate in which a funciton changes w.r.t.
+ small changes in its inputs.
+\end_layout
+
+\begin_layout Remark
+Funcitons that change rapidly when their inputs are perturbed slightly can
+ be problematic for scientific computation because rounding errors in the
+ inputs can result in large changes in the output.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Gradient-Based optimization
+\end_layout
+
+\begin_layout Standard
+terminology here: cost function = loss function = error function
+\end_layout
+
+\begin_layout Subsection
+Gradient descent
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $f\left(x-\varepsilon\text{sign}\left(f^{\prime}\left(x\right)\right)\right)$
+\end_inset
+
+ is less than 
+\begin_inset Formula $f\left(x\right)$
+\end_inset
+
+ for small enough 
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+, thus we can reduce 
+\begin_inset Formula $f\left(x\right)$
+\end_inset
+
+ by moving 
+\begin_inset Formula $x$
+\end_inset
+
+ in small steps with opposite sign of the derivative.
+\end_layout
+
+\begin_layout Standard
+For functions with multiple inputs, to minimize 
+\begin_inset Formula $f$
+\end_inset
+
+ and find the direction in which 
+\begin_inset Formula $f$
+\end_inset
+
+ decreases the fastest
+\begin_inset Formula 
+\[
+\underset{u,\left\lVert u\right\rVert =1}{\min}u^{T}\triangledown_{x}f\left(x\right)=\underset{u,\left\lVert u\right\rVert =1}{\min}\left\lVert u\right\rVert \left\lVert \triangledown_{x}f\left(x\right)\right\rVert \cos\theta
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\theta$
+\end_inset
+
+ is the angle between 
+\begin_inset Formula $u$
+\end_inset
+
+ and the gradient.
+ This can simplifies to 
+\begin_inset Formula 
+\[
+\underset{u}{\min}\cos\theta
+\]
+
+\end_inset
+
+where the gradient points uphill.
+ Thus we should decrease 
+\begin_inset Formula $f$
+\end_inset
+
+ by moving in the direction of the negative gradient, giving the following
+ algorithm
+\begin_inset Formula 
+\[
+\boldsymbol{x}^{\prime}=\boldsymbol{x}-\varepsilon\triangledown_{x}f\left(\boldsymbol{x}\right)
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ is the 
+\emph on
+learning rate, 
+\emph default
+a positive scalar determining the size of the step.
+ A popular approach to set 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ it a small constant.
+ Another approach is to evaluate 
+\begin_inset Formula $f\left(x-\epsilon\triangledown_{x}f\left(x\right)\right)$
+\end_inset
+
+ for several values of 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ and choose the one that results in the smallest objective function value,
+ which method is called a 
+\emph on
+line search
+\emph default
+.
+\end_layout
+
+\begin_layout Section
+Jacobian and Hessian Matrix
+\end_layout
+
+\begin_layout Standard
+The second derivative can be seen as 
+\emph on
+curvature.
+\end_layout
+
+\begin_layout Standard
+The Hessian matrix of continuous functions has the property that 
+\begin_inset Formula 
+\[
+H_{i,j}=H_{j,i}
+\]
+
+\end_inset
+
+which is the case for most of the functions in the context of deep learning.
+\end_layout
+
+\begin_layout Subsection
+The optimal step size and Hessian matrix
+\end_layout
+
+\begin_layout Standard
+About the second derivative, 
+\begin_inset CommandInset href
+LatexCommand href
+name "here"
+target "https://math.stackexchange.com/questions/2573376/second-directional-derivative-and-hessian-matrix"
+literal "false"
+
+\end_inset
+
+.
+ The second directional derivative is represented 
+\begin_inset Formula 
+\[
+d^{T}Hd
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $d$
+\end_inset
+
+ is the unit vector in that direction.
+ 
+\begin_inset CommandInset href
+LatexCommand href
+name "Decompose the Hessian matrix into"
+target "https://en.wikipedia.org/wiki/Symmetric_matrix#Decomposition"
+literal "false"
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+d^{T}Q\Lambda Q^{T}d.
+\]
+
+\end_inset
+
+The directional second derivative is a weighted average of all of the eigenvalue
+s, with weights between 
+\begin_inset Formula $0$
+\end_inset
+
+ and 
+\begin_inset Formula $1$
+\end_inset
+
+ and eigenvectors that have smaller angle with 
+\begin_inset Formula $d$
+\end_inset
+
+ receiving more weight.
+\end_layout
+
+\begin_layout Standard
+By Taylor series and gradient descent
+\begin_inset Formula 
+\[
+f\left(x^{\left(0\right)}-\epsilon g\right)\approx f\left(x^{\left(0\right)}\right)-\epsilon g^{T}g+\frac{1}{2}\epsilon^{2}g^{T}Hg.
+\]
+
+\end_inset
+
+The last two terms determine how gradient descent performs.
+ When 
+\begin_inset Formula $g^{T}Hg$
+\end_inset
+
+ is positive, the optimal step size that decreases 
+\begin_inset Formula $f$
+\end_inset
+
+ (why?)
+\begin_inset Formula 
+\[
+\epsilon^{*}=\frac{g^{T}g}{g^{T}Hg}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Second derivative and local minimum/maximum
+\end_layout
+
+\begin_layout Standard
+At a critical point, it is possible to examine the eigenvalues of the Hessianto
+ determine whether the critical point is a local maximum, local minimum,
+ or saddle point.
+ By inspecting the second directional derivative
+\begin_inset Formula 
+\[
+d^{T}Hd
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+1.
+ 
+\begin_inset Formula $H$
+\end_inset
+
+ positive definite, the point is a local mininum;
+\end_layout
+
+\begin_layout Standard
+2.
+ 
+\begin_inset Formula $H$
+\end_inset
+
+ negative definite, the point is a local maximum.
+\end_layout
+
+\begin_layout Standard
+There might be cases where one eigenvalue of 
+\begin_inset Formula $H$
+\end_inset
+
+ is positive and another is nagative, which implies a saddle point.
+\end_layout
+
+\begin_layout Subsection
+Condition number of Hessian matrix
+\end_layout
+
+\begin_layout Standard
+When the Hessian has a poor condition number, gradient descent performs
+ poorly.
+ Gradient descent is unaware of this change in the derivative so it does
+ nto know that it needs to explore preferentially in the direction where
+ the derivative remains nagative for longer.
+ It also makes it difficult to choose a good step size.
+\end_layout
+
+\begin_layout Subsection
+Newton's method
+\end_layout
+
+\begin_layout Standard
+To avoid the above issue, one can use information from Hessian matrix to
+ guide the search.
+ The simplest method is known as Newton's method.
+\end_layout
+
+\begin_layout Standard
+Solve for the critical point of the second-order Taylor series expansion
+ of 
+\begin_inset Formula $f$
+\end_inset
+
+ near some point 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\mathbf{x}^{*}=\mathbf{x}^{\left(0\right)}-H\left(f\right)\left(\mathbf{x}^{\left(0\right)}\right)^{-1}\triangledown_{x}f\left(\mathbf{x}^{\left(0\right)}\right).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+When 
+\begin_inset Formula $f$
+\end_inset
+
+ is positive definite quadratic function, this method can be applied to
+ compute the minumum directly.
+ Otherwise, iteratively applying this method can reach the critical point
+ much faster thatn gradient descent.
+ However, this method is not suitable for saddle point case.
+\end_layout
+
+\begin_layout Standard
+Deep learning algorithms tend to lack guarantees because the family of functions
+ used in deep learning is quite complicated.
+ The dominant approach in many other fields to optimization is to design
+ optimization algorithms for a limited family of functions.
+\end_layout
+
+\begin_layout Standard
+Lipschitz continuity and convex optimization may give good guarantee.
+ Convex optimization is used only as a subroutine of some deep learning
+ algorithms since most problems in deep learning are difficult to express
+ in terms of convex optimization.
+\end_layout
+
+\begin_layout Section
+Constrained Optimization
+\end_layout
+
+\begin_layout Standard
+One simple approach to constrained optimization is to modify gradient descent
+ taking the constraint into account.
+\end_layout
+
+\begin_layout Standard
+Another sophisticated approach is to design a different unconstrained optimizati
+on whose solution can be converted into a solution to the original constrained
+ optimization problem.
+ e.g.
+ converting a optimization with constrained that 
+\begin_inset Formula $x$
+\end_inset
+
+ have exactly unit norm into 
+\begin_inset Formula $g\left(\theta\right)=f\left(\left[\cos\theta,\sin\theta\right]\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+A very general solution to contrained optimization is Karush-Kuhn-Tucker
+ appraoch.
+ The constrained set is described by a set of equalities and inequalites
+\begin_inset Formula 
+\[
+S=\left\{ \mathbf{x}|\forall i,g^{\left(i\right)}\left(\mathbf{x}\right)=0\text{ and }\forall j,h^{\left(i\right)}\left(\mathbf{x}\right)\leq0\right\} .
+\]
+
+\end_inset
+
+The generalized Lagrangian is defined as
+\begin_inset Formula 
+\[
+L\left(\mathbf{x},\lambda,\alpha\right)=f\left(\mathbf{x}\right)+\sum_{i}\lambda_{i}g^{\left(i\right)}\left(\mathbf{x}\right)+\sum_{j}\alpha_{j}h^{\left(j\right)}\left(\mathbf{x}\right).
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\lambda_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $\alpha_{i}$
+\end_inset
+
+ are called 
+\emph on
+KKT mutlipliers, 
+\emph default
+which functions is unconstraiend.
+ As 
+\begin_inset Formula 
+\[
+\max_{\lambda}\max_{\alpha,\alpha\geq0}L\left(\mathbf{x},\mathbf{\lambda},\alpha\right)=f\left(x\right)
+\]
+
+\end_inset
+
+while violated constraints result in 
+\begin_inset Formula 
+\[
+\max_{\lambda}\max_{\alpha,\alpha\geq0}L\left(\mathbf{x},\mathbf{\lambda},\alpha\right)=\infty.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A simple set of necessary properties describe the optimal points of constained
+ optimization problems:
+\end_layout
+
+\begin_layout Enumerate
+The gradient of the generalized Langrangian is zero;
+\end_layout
+
+\begin_layout Enumerate
+All constraints on both 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ and the KKT multipliers are satisfied;
+\end_layout
+
+\begin_layout Enumerate
+the inequality constraints exhibit complementary slackness: 
+\begin_inset Formula $\alpha\odot h\left(x\right)=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Machine Learning Basics
+\end_layout
+
+\begin_layout Standard
+Machine learning is essentially a form of applied statistics with increased
+ emphasis on the use of computers to statistically estimate complicated
+ functions and a decreased emphasis on proving confidence intervals around
+ these funcitons.
+\end_layout
+
+\begin_layout Standard
+The challenge of fitting the training data differs from the chanllenge of
+ finding patterns that generalizes to new data.
+ Most machine learning algorithms have settings called 
+\emph on
+hyperparameters
+\emph default
+ that must be determined external to the learning algorithm itself.
+\end_layout
+
+\begin_layout Section
+Learning Algorithms, What Is That?
+\end_layout
+
+\begin_layout Definition*
+A computer program is said to learn from experience 
+\begin_inset Formula $E$
+\end_inset
+
+ with respect to some class of tasks 
+\begin_inset Formula $T$
+\end_inset
+
+ and performance measure 
+\begin_inset Formula $P$
+\end_inset
+
+, if its performance at tasks in 
+\begin_inset Formula $T$
+\end_inset
+
+ ,as measured by 
+\begin_inset Formula $P$
+\end_inset
+
+, improves with experience 
+\begin_inset Formula $E$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition*
+Machine learning tasks are usually described in terms of how the machine
+ learning system should process an example, a collection of features that
+ have been quantitively measured from some object or event that we want
+ the machine learning systems to process.
+ These tasks can be classfication, classification with missing inputs (in
+ which case, a set of functions each of which deals with a subset of the
+ input vector must be found), regression, transcript (OCR, speech recognition
+ et al.), machine translation, 
+\begin_inset CommandInset href
+LatexCommand href
+name "structured output"
+target "https://en.wikipedia.org/wiki/Structured_prediction"
+literal "false"
+
+\end_inset
+
+ (parsed tree, image segmentation, image caption), anomaly detection, synthesis
+ and sampling, imputation of missing values, denoising, density eestimation.
+\end_layout
+
+\begin_layout Definition*
+THe perfomance measure 
+\begin_inset Formula $P$
+\end_inset
+
+ is usually specific to the task 
+\begin_inset Formula $T$
+\end_inset
+
+ being carried out by the system.
+ For tasks such as classification, classification with missing inputs, and
+ transcription, we measure the 
+\emph on
+accuracy
+\emph default
+ of the model, or 
+\emph on
+error rate
+\emph default
+.
+ For tasks such as density estimation, the most common approach is to report
+ the average log-probability the model assigns to some examples.
+ We evaluate the performance measure using a 
+\emph on
+test set 
+\emph default
+of data that is separate from the data used for training.
+\end_layout
+
+\begin_layout Definition*
+Machine learning algorithms can be broadly categorized as 
+\emph on
+unsupervised
+\emph default
+ or 
+\emph on
+supervised
+\emph default
+ by what kind of experience they are allowed to have during the learning
+ process.
+ Unsupervised learning and supervised learning are not formally defined
+ terms.
+ The lines between them are often blurred.
+ The chain rule decomposition means that we can solve the ostensibly unsupervise
+d problem into 
+\begin_inset Formula $n$
+\end_inset
+
+ supervised learning problems.
+ Some machine learning algorithms do not just experience a fixed dataset
+ (reinforcement learning algorithms interact with an environment).
+ Most machine learning algorithms simply experience a dataset.
+ One common way of describing a dataset is with a 
+\emph on
+design
+\emph default
+ 
+\emph on
+matrix
+\emph default
+.
+ A design matrix is a matrix containing a different example in each row.
+ Each column of the matrix corresponds to a different feature.
+\end_layout
+
+\begin_layout Section
+Capacity, Overfitting and Underfitting
+\end_layout
+
+\begin_layout Standard
+The central challenge in machine learning is that we must perform well on
+ new, previously unseen inputs.
+ The factors determining how well a machine learning algorithm will perform
+ are its ability to make the training error small and make the gap between
+ training and test error small.
+ We first assume the underlying 
+\emph on
+data generating distribution 
+\emph default
+is independently indentically distributed.
+\end_layout
+
+\begin_layout Standard
+We can control whether a model is more likely to overfit or underfit by
+ altering its 
+\emph on
+capacity
+\emph default
+ (a model’s capacity is its ability to fit a wide variety of funcitons).
+ One way to control the capacity of a learning algorithm is by choosing
+ its 
+\emph on
+hypothesis
+\emph default
+ 
+\emph on
+space
+\emph default
+, the set of functions that the learning algorithm is allowed to select
+ as being the solution (like linear regression is restricted to lineear
+ functions).
+ Machine learning algorithms will generally perform best when their capacity
+ is appropriate for the true complexity of the task they need to perform
+ and the amount of training data they are provided with.
+ The capacity of a model is not only determined by its 
+\emph on
+representational capacity.
+ 
+\emph default
+Additional limitations such as the imperfection of the optimization algorithm
+ can make the 
+\emph on
+effective capacity 
+\emph default
+less thant the representational capacity of the model family.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+\begin_inset CommandInset href
+LatexCommand href
+name "Vapnik-Chervonenkis dimension"
+target "https://en.wikipedia.org/wiki/Vapnik–Chervonenkis_dimension"
+literal "false"
+
+\end_inset
+
+ 
+\emph default
+is the most well-known means of quantifying model capacity.
+ 
+\begin_inset Formula $H$
+\end_inset
+
+ can be seen as a set of functions and 
+\begin_inset Formula $C$
+\end_inset
+
+ is the data set.
+ The VC dimension of 
+\begin_inset Formula $H$
+\end_inset
+
+ is the cardinality of the data set that 
+\begin_inset Formula $H$
+\end_inset
+
+ covers.
+ The most important results in statistical learning theory show that the
+ discrepancy between training error and generalization error is bounded
+ from above by a quantity that grows as the model capacity grows but shrinks
+ as the number of training examples increases.
+\end_layout
+
+\begin_layout Standard
+Non-parametric models???? TODO
+\end_layout
+
+\begin_layout Standard
+Bayes Error ???
+\end_layout
+
+\begin_layout Section
+From cybernetics, connectionism to deep learning
+\end_layout
+
+\begin_layout Standard
+Computational models of biological learning, models of how learning happens
+ or could happen in the brain (ANNs)
+\end_layout
+
+\begin_layout Standard
+The term 
+\begin_inset Quotes eld
+\end_inset
+
+deep learning
+\begin_inset Quotes erd
+\end_inset
+
+ appeals to a more general principle of learning 
+\emph on
+mutliple levels of compositions, 
+\emph default
+not necessarily neurally inspired.
+ The earliest predecessors of modern deep learning were simple linear models
+ motivated from a neuroscientific perspective.
+ e.g.
+ the McCulloch-Pitts neuron, ADALINE.
+ Slightly modified versions of the stochastic gradient descent algorithm
+ remian the dominant training algorithm for deep learning models today.
+ Most neural networks today are based on a model neuron called the rectified
+ linear unit.
+ The original cognitron (Fukushima, 1975) introduced a more complicated
+ version that was highly inspired by our knowledge of brain function.
+ Today, neuroscience is regarded as an important source of inspiration for
+ deep learning researchers, but it is no longer the predominant guide for
+ the field.
+ Actual neurons compute very different functions than modern rectified linear
+ units, but greater neural realism has not yet led to an improvement in
+ machine learning performance.
+\end_layout
+
+\begin_layout Standard
+The central idea in connectionism is that a large number of simple computational
+ units can achieve intelligent behavior when networked together.
+ One of these concepts is that of distributed representation.
+ Another major accomplishment of the connectionist movement was the suc-
+ cessful use of back-propagation to train deep neural networks with internal
+ repre- sentations and the popularization of the back-propagation algorithm.
+\end_layout
+
+\begin_layout Standard
+The third wave of neural networks research began with a breakthrough in
+ 2006.
+ This wave of neural networks research popularized the use of the term “deep
+ learning” to emphasize that researchers were now able to train deeper neural
+ networks than had been possible before, and to focus attention on the theoretic
+al importance of depth.
+\end_layout
+
+\begin_layout Section
+The age of Big Data
+\end_layout
+
+\begin_layout Standard
+The age of Big Data has made machine learning much easier because the key
+ burden of statistical estimation—generalizing well to new data after observing
+ only a small amount of data has been considerably lightened.
+\end_layout
+
+\begin_layout Section
+Increasing Model Sizes
+\end_layout
+
+\begin_layout Standard
+Since the introduction of hidden units, artificial neural networks have
+ doubled in size roughly every 2.4 years.
+ This growth is driven by faster computers with larger memory and by the
+ availability of larger datasets.
+ Larger networks are able to achieve higher accuracy on more complex tasks.
+ The increase in model size over time, due to the availability of faster
+ CPUs, the advent of general purpose GPUs , faster network connectivity
+ and better software infrastructure for distributed computing, is one of
+ the most important trends in the history of deep learning.
+\end_layout
+
+\begin_layout Section
+Increasing Accuracy, Complexity and Real-World Impact
+\end_layout
+
+\begin_layout Standard
+Since the 1980s, deep learning has consistently improved in its ability
+ to provide accurate recognition and prediction.
+ Moreover, deep learning has consistently been applied with success to broader
+ and broader sets of applications.
+ 
+\end_layout
+
+\begin_layout Standard
+Another crowning achievement of deep learning is its extension to the domain
+ of reinforcement learning.
+ In the context of reinforcement learning, an autonomous agent must learn
+ to perform a task by trial and error, without any guidance from the human
+ operator.
+ 
+\end_layout
+
+\begin_layout Section
+Convolutional Networks
+\end_layout
+
+\begin_layout Standard
+Convolutional networks (LeCun, 1989), also known as convolutional neural
+ networks, or CNNs, are a specialized kind of neural network for processing
+ data that has a known grid-like topology.
+ Convolutional networks are simply neural networks that use convolution
+ in place of general matrix multiplication in at least one of their layers.
+ 
+\end_layout
+
+\begin_layout Standard
+Usually, the operation used in a convolutional neural network does not correspon
+d precisely to the definition of convolution as used in other fields, such
+ as engineering or pure mathematics.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+s\left(t\right) & =\int x\left(a\right)w\left(t-a\right)da\\
+ & =\sum_{a=-\infty}^{\infty}x\left(a\right)w\left(t-a\right)
+\end{align*}
+
+\end_inset
+
+ 
+\begin_inset Formula $x$
+\end_inset
+
+ is referred to as 
+\emph on
+input
+\emph default
+ and 
+\begin_inset Formula $w$
+\end_inset
+
+ as 
+\emph on
+kernel.
+ 
+\emph default
+the output 
+\begin_inset Formula $s$
+\end_inset
+
+ sometimes as 
+\emph on
+feature map
+\emph default
+.
+ In machine learning applications, the input is usually a multidimensional
+ array of data, and the kernel is usually a multidimensional array of parameters
+ that are adapted by the learning algorithm.
+\end_layout
+
+\begin_layout Standard
+Many neural network libraries implement a related function called the cross-corr
+elation, which is the same as convolution but without flipping the kernel.
+ Many machine learning libraries implement cross-correlation but call it
+ convolution.
+ In the context of machine learning, the learning algorithm will learn the
+ appropriate values of the kernel in the appropriate place, so an algorithm
+ based on convolution with kernel flipping will learn a kernel that is flipped
+ relative to the kernel learned by an algorithm without the flipping.
+ Discrete convolution can be viewed as multiplication by a matrix, but the
+ matrix has several entries constrained to be equal to other entries.
+ convolution usually corresponds to a very sparse matrix (a matrix whose
+ entries are mostly equal to zero).
+\end_layout
+
+\end_body
+\end_document
