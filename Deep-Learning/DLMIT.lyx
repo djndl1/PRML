@@ -819,7 +819,7 @@ A computer program is said to learn from experience
 \begin_inset Formula $T$
 \end_inset
 
- ,as measured by 
+, as measured by 
 \begin_inset Formula $P$
 \end_inset
 
@@ -852,7 +852,7 @@ literal "false"
 \end_layout
 
 \begin_layout Definition*
-THe perfomance measure 
+The perfomance measure 
 \begin_inset Formula $P$
 \end_inset
 
@@ -950,8 +950,8 @@ hypothesis
 space
 \emph default
 , the set of functions that the learning algorithm is allowed to select
- as being the solution (like linear regression is restricted to lineear
- functions).
+ as being the solution (like linear regression is restricted to linear functions
+).
  Machine learning algorithms will generally perform best when their capacity
  is appropriate for the true complexity of the task they need to perform
  and the amount of training data they are provided with.
@@ -999,7 +999,7 @@ is the most well-known means of quantifying model capacity.
 \begin_inset Formula $H$
 \end_inset
 
- covers.
+ shatters.
  The most important results in statistical learning theory show that the
  discrepancy between training error and generalization error is bounded
  from above by a quantity that grows as the model capacity grows but shrinks
@@ -1012,6 +1012,358 @@ Non-parametric models???? TODO
 
 \begin_layout Standard
 Bayes Error ???
+\end_layout
+
+\begin_layout Standard
+The 
+\emph on
+no free lunch theorem
+\emph default
+ for machine learning states that averaged over all possible data generating
+ distributions, every classifcation algorithm has the smae error rate when
+ classifying prevously unobserved points.
+ In other words, no machine learning algorithm is universally any better
+ than any other.
+ However, if we make assumptions about the kinds of probability distributions
+ we encounter in real-world applications, we can design learning algorithms
+ that perform well on these distributions.
+ The goal of machine learning research is not to seek a universal learning
+ algorithm or the absolute best learning algorithm.
+\end_layout
+
+\begin_layout Standard
+The behavior of our algorithm is strongly affected not just by how large
+ we make the set of functions allowed in its hypothesis space, but by the
+ specific identity of those functions.
+ We can give a learning algorithm a preference for one solution in its hypothesi
+s space to another.
+ Weight decay is a kind of perference added to a cost function.
+ Expressing preferences for one function over another is a more general
+ way of controlling a model’s capacity than including or excluding members
+ from the hypothesis space.
+ Regularization is any modification we make to a learning algorithm that
+ is intended to reduce its generalization error but not its training error.
+ Regularization is one of the central concerns of the field of machine learning,
+ rivaled by its importantce only by 
+\emph on
+optimization.
+\end_layout
+
+\begin_layout Section
+Hyperparameters and Validation Sets
+\end_layout
+
+\begin_layout Standard
+Most machine learning algorithms have several settings that we can use to
+ control the behavior of the learning algorithm, called 
+\emph on
+hyperparameters
+\emph default
+.
+ To choose a proper hyperparameter, we need a 
+\emph on
+validation set 
+\emph default
+of examples that the training algorithm does not observe.
+ We construct the validation set from the training data.
+ The validation set is used to estimate the generalization error during
+ or after training, allowing for the hyperparameteres to be updated accordingly.
+ Typically, 
+\begin_inset Formula $80\%$
+\end_inset
+
+ of the training data for training and 
+\begin_inset Formula $20\%$
+\end_inset
+
+ for validation.
+\end_layout
+
+\begin_layout Standard
+When the dataset is too small to be divided into disjoint parts, we use
+ cross-validation.
+ It is based on the idea of repeating the training and testing computation
+ on different randomly chosen subsets or splits of the original dataset.
+ The most common of these is the 
+\begin_inset Formula $k$
+\end_inset
+
+-fold cross validation procedure.
+\end_layout
+
+\begin_layout Section
+Estimators, Bias, and Variance
+\end_layout
+
+\begin_layout Standard
+Foundational concept such as parameter estimation, bias and variance are
+ useful to formally characterize notions of genralization, underfitting
+ and overfitting.
+ Bias and variance measure two different sources of error in an estimator.
+ Bias measures the expected deviation from the true value of the function
+ or parameter.
+ Variance on the other hand, provides a measure of the deviation from the
+ expected estimator value that any particular sampling of the data is likely
+ to cause.
+\end_layout
+
+\begin_layout Subsection
+Estimation
+\end_layout
+
+\begin_layout Standard
+Point estimation provides the single best prediction of some quantity of
+ interest.
+ In general, the quantity of interest can be a single parameter or a vector
+ parameter in some parametric model.
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $\left\{ x^{\left(1\right)},x^{\left(2\right)},\dots,x^{\left(m\right)}\right\} $
+\end_inset
+
+ be a set of 
+\begin_inset Formula $m$
+\end_inset
+
+ i.i.d data points.
+ A 
+\emph on
+point estimator 
+\emph default
+or 
+\emph on
+statistic 
+\emph default
+is any function of the data
+\begin_inset Formula 
+\[
+\hat{\theta}=g\left(x^{\left(1\right)},\dots,x^{\left(m\right)}\right).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\hat{\theta}$
+\end_inset
+
+ is a random variable.
+\end_layout
+
+\begin_layout Standard
+Point estimation can also refer to the estimation of the relationship between
+ input and target variables, also called 
+\emph on
+function estimators.
+ 
+\emph default
+The function estimator 
+\begin_inset Formula $\hat{f}$
+\end_inset
+
+ is simply a point estimator in function space.
+ Linear regression can be seen as an example of estimating a function from
+ 
+\begin_inset Formula $x$
+\end_inset
+
+ to 
+\begin_inset Formula $y$
+\end_inset
+
+ .
+\end_layout
+
+\begin_layout Subsection
+Bias (about the accuracy of an estimator)
+\end_layout
+
+\begin_layout Standard
+The bias of an estimator is defined as 
+\begin_inset Formula 
+\[
+\text{bias}\left(\hat{\theta}_{m}\right)=E\left(\hat{\theta}_{m}\right)-\theta.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where the expectation is over the data and 
+\begin_inset Formula $\theta$
+\end_inset
+
+ is the true underlying value used to define the data generating distribution.
+ An estimator 
+\begin_inset Formula $\hat{\theta}_{m}$
+\end_inset
+
+ is said to be 
+\emph on
+unbiased
+\emph default
+ if 
+\begin_inset Formula $\text{bias}\left(\hat{\theta}_{m}\right)=0$
+\end_inset
+
+.
+ An estimator 
+\begin_inset Formula $\hat{\theta}_{m}$
+\end_inset
+
+ is said to be 
+\emph on
+asymptotically unbiased 
+\emph default
+if 
+\begin_inset Formula $\lim_{m\to\infty}\text{bias}\left(\hat{\theta}_{m}\right)=0$
+\end_inset
+
+.
+ Unbiased estimators are not always the best estimators.
+\end_layout
+
+\begin_layout Subsection
+Variance and Standard Error (about the dispersion of an estimator)
+\end_layout
+
+\begin_layout Standard
+The variance of an estimator is simply the variance 
+\begin_inset Formula 
+\[
+\text{Var}\left(\hat{\theta}\right)
+\]
+
+\end_inset
+
+where the random variable is the training set.
+ Alternatively, the standard error is denoted 
+\begin_inset Formula $\text{SE}\left(\hat{\theta}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The variance or the standard error of an estimator provides a measure of
+ how we would expect the estimate we compute from data to vary as we independent
+ly resample the dataset from the underlying data generating process.
+ We would like to have it low.
+\end_layout
+
+\begin_layout Standard
+The standard error of the mean is given by
+\begin_inset Formula 
+\[
+\text{SE}\left(\hat{\mu}_{m}\right)=\sqrt{\text{Var}\left[\frac{1}{m}\sum_{i=1}^{m}x^{\left(i\right)}\right]}=\frac{\sigma}{\sqrt{m}}.
+\]
+
+\end_inset
+
+However, neither the square root of the sample variance or the square root
+ of the unbiased estimator of the variance provide an unbiased estimate
+ of the standard deviation.
+ They tend to underestimate the true standard deviation, but are still in
+ use in practice.
+ For large 
+\begin_inset Formula $m$
+\end_inset
+
+, the approximation is quite reasonable.
+\end_layout
+
+\begin_layout Standard
+The standard error of the mean is very useful in machine learning experiments.
+ We often estimate the generalization error by computing
+\emph on
+ the sample mean of the error
+\emph default
+ on the test set.
+ The number of examples in the test set determines the accuracy of this
+ estimate.
+ Using this estimation, by the central limit theorem, we can compute the
+ probability that the true expectation falls in any chose interval.
+\end_layout
+
+\begin_layout Standard
+It is a common property of popular estimators that the variance of the estimator
+ decreases as a function of 
+\begin_inset Formula $m$
+\end_inset
+
+, the number of examples in the dataset.
+\end_layout
+
+\begin_layout Subsection
+Trading off Bias and Variance
+\end_layout
+
+\begin_layout Standard
+If we are to minimize the mean squared error of the estimates, which measures
+ the overall expected deviation between the estimator and the true value
+ of the parameter 
+\begin_inset Formula $\theta$
+\end_inset
+
+.
+\begin_inset Formula 
+\begin{align*}
+\text{MSE} & =E\left[\left(\hat{\theta}_{m}-\theta\right)^{2}\right]\\
+ & =\text{Bias}\left(\hat{\theta}_{m}\right)^{2}+\text{Var}\left(\hat{\theta}_{m}\right).
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Desirable estimators are those with small MSE and these are estimators that
+ manage to keep both their bias and variance somewhat in check.
+\end_layout
+
+\begin_layout Subsection
+Consistency
+\end_layout
+
+\begin_layout Definition
+Consistency
+\end_layout
+
+\begin_layout Definition
+For any 
+\begin_inset Formula $\varepsilon>0$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+P\left(\left|\hat{\theta}_{m}-\theta\right|>\varepsilon\right)\to0
+\]
+
+\end_inset
+
+as 
+\begin_inset Formula $m\to0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition
+Consistency ensure that the bias induced by the estimator diminishes as
+ the number of data example grows.
+ Asymptotic unbiasedness does not imply consistency.
+\end_layout
+
+\begin_layout Standard
+
 \end_layout
 
 \begin_layout Section
