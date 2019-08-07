@@ -379,8 +379,8 @@ p\left(t|x,\mathbf{x},\mathbf{t}\right)=\int p\left(t|x,\mathbf{w}\right)p\left(
 
 \end_inset
 
-By making the two distributions Gaussian, the left side predictive distribution
- can be analytically determined.
+By making the two distributions Gaussian, the left side 11222predictive
+ distribution can be analytically determined.
  The resulting distribution is dependent on the sample to predictive 
 \begin_inset Formula $x$
 \end_inset
@@ -591,8 +591,52 @@ theory: to exploit this probabilistic representation in order to make prediction
 s that are optimal according to appropriate criteria.
 \end_layout
 
+\begin_layout Subsection
+Minimizing the misclassification rate
+\end_layout
+
 \begin_layout Standard
-\begin_inset Separator plain
+Consider a two-class problem
+\begin_inset Formula 
+\begin{align*}
+p\left(\text{mistake}\right) & =p\left(\mathbf{x}\in R_{1},C_{2}\right)+p\left(\mathbf{x}\in R_{2},C_{1}\right)\\
+ & =\int_{R_{1}}p\left(\mathbf{x},C_{2}\right)d\mathbf{x}+\int_{R_{2}}p\left(\mathbf{x},C_{1}\right)d\mathbf{x}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The minimum probability of making a mistake is obtained if each value of
+ 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ is assigned to the class for which the posterior probability 
+\begin_inset Formula $p\left(C_{k}|x\right)$
+\end_inset
+
+ is largest.
+\end_layout
+
+\begin_layout Subsection
+Minimizing the expected loss
+\end_layout
+
+\begin_layout Standard
+Instead of just consider the posterior probability, we consider a 
+\emph on
+cost function.
+
+\emph default
+ The optimal solution is the one which minimizes the loss function
+\begin_inset Formula 
+\[
+E\left[L\right]=\sum_{k}\sum_{j}\int_{R_{j}}L_{kj}p\left(\mathbf{x},C_{k}\right)d\mathbf{x}.
+\]
+
 \end_inset
 
 
