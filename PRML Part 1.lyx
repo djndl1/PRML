@@ -388,86 +388,6 @@ By making the two distributions Gaussian, the left side 11222predictive
 .
 \end_layout
 
-\begin_layout Subsection
-\begin_inset CommandInset href
-LatexCommand href
-name "Generative models, discriminative models"
-target "https://en.wikipedia.org/wiki/Generative_model"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Given an observable variable 
-\begin_inset Formula $X$
-\end_inset
-
- and a target variable 
-\begin_inset Formula $Y$
-\end_inset
-
-, a
-\emph on
- generative model is a statistical model 
-\emph default
-of the joint probability distribution on 
-\begin_inset Formula $X\times Y$
-\end_inset
-
-, 
-\begin_inset Formula $P\left(X,Y\right)$
-\end_inset
-
-, sometimes also defined as 
-\begin_inset Formula $P\left(X|Y\right)$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Itemize
-A discriminative model is a model of the conditional probability of the
- target 
-\begin_inset Formula $Y$
-\end_inset
-
-, given an observation 
-\begin_inset Formula $x$
-\end_inset
-
-, symbolically 
-\begin_inset Formula $P\left(Y|X=x\right)$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Itemize
-Classifiers computed without using a probability models are also referred
- to loosely as 
-\begin_inset Quotes eld
-\end_inset
-
-discriminative
-\begin_inset Quotes erd
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-Two definitions of generative models are closely related, separated only
- by 
-\begin_inset Formula $P\left(X,Y\right)=P\left(X|Y\right)P\left(Y\right)$
-\end_inset
-
-.
- Generative and discriminative models can be transformed into each other.
-\end_layout
-
 \begin_layout Section
 Model Selection
 \end_layout
@@ -642,8 +562,134 @@ E\left[L\right]=\sum_{k}\sum_{j}\int_{R_{j}}L_{kj}p\left(\mathbf{x},C_{k}\right)
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Subsection
+Reject options
+\end_layout
 
+\begin_layout Standard
+In some applications, it will be appropriate to avoid making decisions on
+ the difficult cases where we are uncertain about class membership.
+ This is known as the 
+\emph on
+reject option
+\emph default
+.
+\end_layout
+
+\begin_layout Subsection
+Inference and decision
+\end_layout
+
+\begin_layout Standard
+Inference and decision can be solved together by simply learning a function
+ that maps inputs 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ directly into decisions (
+\emph on
+discriminant functions
+\emph default
+).
+\end_layout
+
+\begin_layout Itemize
+Given an observable variable 
+\begin_inset Formula $X$
+\end_inset
+
+ and a target variable 
+\begin_inset Formula $Y$
+\end_inset
+
+, a
+\emph on
+ generative model is a statistical model 
+\emph default
+of the joint probability distribution on 
+\begin_inset Formula $X\times Y$
+\end_inset
+
+, 
+\begin_inset Formula $P\left(X,Y\right)$
+\end_inset
+
+, sometimes also defined as 
+\begin_inset Formula $P\left(X|Y\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+A discriminative model is a model of the conditional probability of the
+ target 
+\begin_inset Formula $Y$
+\end_inset
+
+, given an observation 
+\begin_inset Formula $x$
+\end_inset
+
+, symbolically 
+\begin_inset Formula $P\left(Y|X=x\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Classifiers computed without using a probability models are also referred
+ to loosely as 
+\begin_inset Quotes eld
+\end_inset
+
+discriminative
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Two definitions of generative models are closely related, separated only
+ by 
+\begin_inset Formula $P\left(X,Y\right)=P\left(X|Y\right)P\left(Y\right)$
+\end_inset
+
+.
+ Generative and discriminative models can be transformed into each other.
+\end_layout
+
+\begin_layout Standard
+There are many powerful reasons for wanting to compute the posterior probabiliti
+es:
+\end_layout
+
+\begin_layout Description
+Minimizing
+\begin_inset space ~
+\end_inset
+
+risk If we know the posterior probabilities, we can trivially revise the
+ minimum risk decision criterion.
+\end_layout
+
+\begin_layout Description
+Reject
+\begin_inset space ~
+\end_inset
+
+option Posterior probabilities allow us to determine a rejection criterion
+ that will minimize the misclassification rate.
+\end_layout
+
+\begin_layout Description
+Combining
+\begin_inset space ~
+\end_inset
+
+models
 \end_layout
 
 \begin_layout Section
