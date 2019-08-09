@@ -1362,8 +1362,161 @@ Consistency ensure that the bias induced by the estimator diminishes as
  Asymptotic unbiasedness does not imply consistency.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Section
+Stochastic Gradient Descent
+\end_layout
 
+\begin_layout Standard
+Nearly all of deep learning is powered by one very important algorithm:
+ 
+\series bold
+\emph on
+schochastic gradient descent
+\series default
+\emph default
+ or 
+\series bold
+SGD
+\series default
+, which is an extension of the gradient descent algorithm.
+\end_layout
+
+\begin_layout Standard
+The cost function by a machine learning algorithm often decomposes as a
+ sum over training examples of per-example loss function.
+ The computational cost of the operation is 
+\begin_inset Formula $O\left(m\right)$
+\end_inset
+
+.
+ As the training set size grows to billions of examples, the time to take
+ a single gradient step becomes prohibitively long.
+\end_layout
+
+\begin_layout Standard
+The insight of stochastic gradient descent is that the gradient is an expectatio
+n:
+\begin_inset Formula 
+\[
+J\left(\theta\right)=E_{\mathbf{x},y\sim\hat{p}_{\text{data}}}L\left(x,y,\theta\right).
+\]
+
+\end_inset
+
+The expectation may be approximately estimated using a small set of samples.
+ On each step of the algorithm, a 
+\emph on
+minibatch
+\emph default
+ of examples are drawn uniformly from the training set.
+ We may fit a training set with billions of examples using updates computed
+ on only a hundred examples.
+ The asymptotic cost of training a model with SGD is 
+\begin_inset Formula $O\left(1\right)$
+\end_inset
+
+ as a function of 
+\begin_inset Formula $m$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Part
+Deep Networks: Modern Practices
+\end_layout
+
+\begin_layout Standard
+Modern deep learning provides a very powerful framework for supervised learning.
+ By adding more layers and more units within a layer, a deep network can
+ represent functions of increasing complexity.
+ Most tasks that consist of mapping an input vector to an output vector,
+ and that are easy for a person to do rapidly, can be accomplished via deep
+ learning, given sufficiently large models and sufficiently large datasets
+ of labeled training examples.
+\end_layout
+
+\begin_layout Chapter
+Deep Forward Networks
+\end_layout
+
+\begin_layout Standard
+Feedforward networks, also called multiplayer perceptron, are the quintessential
+ deep learning models.
+ The goal of a feedforward network is to approximate a function 
+\begin_inset Formula $f^{*}$
+\end_inset
+
+.
+ Information flows through the function evaluated from 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ There are no feedback connections in which outputs of the model are fed
+ back into itself.
+ When feedforward neural networks are extended to include feedback connections,
+ they are called 
+\series bold
+\emph on
+recurrent neural networks
+\series default
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Feedforward neural networks are called neural because they are 
+\emph on
+loosely
+\emph default
+ inspired by neuroscience.
+ these networks are called 
+\emph on
+networks
+\emph default
+ because they are typically represented by composing together many different
+ functions.
+ The model is associated with a directed acyclic graph describing how the
+ functions are composed together.
+ An example might be 
+\begin_inset Formula 
+\[
+f\left(x\right)=f^{\left(3\right)}\left(f^{\left(2\right)}\left(f^{\left(1\right)}\left(x\right)\right)\right).
+\]
+
+\end_inset
+
+The overall length of the chain is the 
+\emph on
+depth 
+\emph default
+of the model.
+ The learning algorithm must decide how to use these layers to best implement
+ an approximation of 
+\begin_inset Formula $f^{*}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+A layer can be seen as a vector-to-vector function.
+ A layer has many 
+\emph on
+units 
+\emph default
+that act in parallel.
+ Each unit resembles a neuron in the sense that it receives input from many
+ other units and computes its own activation value.
+ 
+\end_layout
+
+\begin_layout Standard
+It is best to think of feedforward networks as function approximation machines
+ that are designed to achieve statistical generalization, occasionally drawing
+ some insights from what we know about the brain, rather than as models
+ of brain function.
 \end_layout
 
 \begin_layout Section
