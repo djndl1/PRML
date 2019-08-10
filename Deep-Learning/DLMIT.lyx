@@ -1519,6 +1519,18 @@ It is best to think of feedforward networks as function approximation machines
  of brain function.
 \end_layout
 
+\begin_layout Standard
+Deep learning addresses the limitations of linear models and kernel methods
+ by learning the functions that map 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ to different feature dimensions to obtain a realiable non-linear function
+ approximation.
+ Instead of specifying the right function, practitioners specify the right
+ family of functions.
+\end_layout
+
 \begin_layout Section
 From cybernetics, connectionism to deep learning
 \end_layout
