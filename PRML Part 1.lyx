@@ -73,10 +73,10 @@ theorems-ams-extended-chap-bytype
 \shortcut idx
 \color #008000
 \end_index
-\leftmargin 2cm
-\topmargin 2cm
-\rightmargin 2cm
-\bottommargin 2cm
+\leftmargin 3cm
+\topmargin 3cm
+\rightmargin 3cm
+\bottommargin 3cm
 \secnumdepth 3
 \tocdepth 3
 \paragraph_separation indent
@@ -690,6 +690,50 @@ Combining
 \end_inset
 
 models
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Consider a regression problem.
+ We intend to minimize the average or expected loss 
+\begin_inset Formula 
+\[
+E\left[L\right]=\int\int L\left(t,y\left(x\right)\right)p\left(\mathbf{x},t\right)d\mathbf{x}dt.
+\]
+
+\end_inset
+
+Suppose the loss function is 
+\begin_inset Formula $L\left(t,y\left(\mathbf{x}\right)\right)=\left\{ y\left(\mathbf{x}\right)-t\right\} ^{2}$
+\end_inset
+
+.
+ The original average loss can be written as 
+\begin_inset Formula 
+\[
+E\left[L\right]=\int\left\{ y\left(\mathbf{x}\right)-E\left[t|\mathbf{x}\right]\right\} ^{2}p\left(\mathbf{x}\right)d\mathbf{x}+\int\left\{ E\left[t|\mathbf{x}\right]-t\right\} ^{2}p\left(\mathbf{x}\right)d\mathbf{x}.
+\]
+
+\end_inset
+
+where the second term is the variance of 
+\begin_inset Formula $t$
+\end_inset
+
+, the intrinsic variability of the target data can be regarded as noise,
+ the irreducible minimum value of the loss function.
+ The three approaches hold for regressions problems except for the former
+ two need an additional step
+\begin_inset Formula $y\left(x\right)=\int tp\left(t|\mathbf{x}\right)dt$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section
@@ -2022,8 +2066,7 @@ nearest-neighbor
 \end_layout
 
 \begin_layout Chapter
-3.
- Linear Models for Regression
+Linear Models for Regression
 \end_layout
 
 \begin_layout Standard
@@ -2052,7 +2095,7 @@ input
 \end_layout
 
 \begin_layout Section
-3.1 Linear Basis Function Models
+Linear Basis Function Models
 \end_layout
 
 \begin_layout Standard
@@ -2588,8 +2631,7 @@ For the case of arbitrary covariance matrices, see MAL of multi-variate
 \end_layout
 
 \begin_layout Chapter
-4.
- Linear Models for Classification
+Linear Models for Classification
 \end_layout
 
 \begin_layout Standard
@@ -2704,11 +2746,11 @@ link function
 \end_layout
 
 \begin_layout Section
-4.1 Discriminant Functions
+Discriminant Functions
 \end_layout
 
 \begin_layout Subsection
-4.1.1 Two classes
+Two classes
 \end_layout
 
 \begin_layout Standard
@@ -2798,7 +2840,7 @@ Set
 \end_layout
 
 \begin_layout Subsection
-4.1.2 Multiple classes
+Multiple classes
 \end_layout
 
 \begin_layout Standard
@@ -2900,7 +2942,7 @@ and then assign a point
 \end_layout
 
 \begin_layout Subsection
-4.1.3 Least squares for classification
+Least squares for classification
 \end_layout
 
 \begin_layout Standard
@@ -3043,7 +3085,7 @@ The least-squares solutions lack robustness to outliers.
 \end_layout
 
 \begin_layout Subsection
-4.1.4 Fisher's linear discriminant
+Fisher's linear discriminant
 \end_layout
 
 \begin_layout Standard
@@ -3161,7 +3203,7 @@ Fishers's linear discriminant,
 \end_layout
 
 \begin_layout Section
-4.2 Probabilistic Generative Models
+Probabilistic Generative Models
 \end_layout
 
 \begin_layout Standard
@@ -3269,7 +3311,7 @@ a_{k}=\ln p\left(x|C_{k}\right)p\left(C_{k}\right)
 \end_layout
 
 \begin_layout Subsection
-4.2.1 Continuous inputs
+Continuous inputs
 \end_layout
 
 \begin_layout Standard
@@ -3365,7 +3407,7 @@ quadratic discriminant.
 \end_layout
 
 \begin_layout Subsection
-4.2.2 Maximum likelihood solution
+Maximum likelihood solution
 \end_layout
 
 \begin_layout Standard
@@ -3484,7 +3526,7 @@ https://en.wikipedia.org/wiki/Naive_Bayes_classifier#Probabilistic_model
 \end_layout
 
 \begin_layout Section
-4.3 Probabilistic Discriminative Models
+Probabilistic Discriminative Models
 \end_layout
 
 \begin_layout Standard
@@ -3526,7 +3568,7 @@ training.
 \end_layout
 
 \begin_layout Subsection
-4.3.2 Logistic regression
+Logistic regression
 \end_layout
 
 \begin_layout Standard
