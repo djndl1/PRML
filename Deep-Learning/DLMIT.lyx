@@ -1510,6 +1510,43 @@ Minimizing the KL divergence corresponds to minimizing the cross-entropy
  as minimizing a cost function.
 \end_layout
 
+\begin_layout Standard
+The conditional Log-likelihood forms the basis for most supervised learning:
+\begin_inset Formula 
+\[
+\theta_{ML}=\underset{\theta}{\arg\max}P\left(Y|X;\theta\right).
+\]
+
+\end_inset
+
+Assume the examples are i.i.d, then this is decomposed into
+\begin_inset Formula 
+\[
+\theta_{ML}=\underset{\theta}{\arg\max}\sum_{i=1}^{m}\log P\left(y^{\left(i\right)}|x^{\left(i\right)};\theta\right).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The main appeal of the maximum likelihood estimator is that it can be shown
+ to be the best estimator asymtotically, as the number of examples 
+\begin_inset Formula $m\to\infty$
+\end_inset
+
+ in terms of its rate of convergece as 
+\begin_inset Formula $m$
+\end_inset
+
+ increases.
+\end_layout
+
+\begin_layout Standard
+TODO
+\end_layout
+
 \begin_layout Part
 Deep Networks: Modern Practices
 \end_layout
