@@ -1734,7 +1734,88 @@ J\left(\theta\right)=-E_{\mathbf{x},\mathbf{y}\sim\hat{p}_{\text{data}}}\log p_{
 \end_layout
 
 \begin_layout Standard
+The specific form of the cost function changes from model to model, depending
+ on the specific form of 
+\begin_inset Formula $\log p_{\text{model}}$
+\end_inset
+
+.
+ An advantage of this approach of deriving the cost funciton from maximum
+ likelihood is that it removes the burden of designing cost functions for
+ each model.
+ Specifying a model 
+\begin_inset Formula $p\left(y|x\right)$
+\end_inset
+
+ automatically determines a cost function 
+\begin_inset Formula $\log p\left(y|x\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+One recurring theme throughout neural network design is that the gradient
+ of the cost function must be large and predictable enough to serve as a
+ good guide for the learning algorithm.
+ The negative likelihood helps to avoid this problem for many models.
+\end_layout
+
+\begin_layout Standard
 TODO
+\end_layout
+
+\begin_layout Section
+Hidden Units
+\end_layout
+
+\begin_layout Standard
+The design of hidden units is an extemely active area of research and does
+ not yet have many definitive guiding theoretical principles.
+ It is usually impossible to predict in advance what type of hidden units
+ will work best.
+ The design process consists of trial and error.
+\end_layout
+
+\begin_layout Standard
+Most hidden units can be described as accepting a vector of input 
+\begin_inset Formula $x$
+\end_inset
+
+, computing an affine transformation 
+\begin_inset Formula $z=W^{T}x+b$
+\end_inset
+
+ and then applying an element-wise nonlinear function 
+\begin_inset Formula $g\left(z\right)$
+\end_inset
+
+.
+ Most hidden units are distinguishedfrom each other only the choice of the
+ form of the activation function 
+\begin_inset Formula $g\left(z\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Rectified linear units are an excellent defautl choice of hidden unit.
+ In real numerical computation, when a function is asked to evaluate 
+\begin_inset Formula $g\left(0\right)$
+\end_inset
+
+, it is very unlikely that the underlying value truly was 
+\begin_inset Formula $0$
+\end_inset
+
+.
+ The training is not expected to reach a gradient of 
+\begin_inset Formula $0$
+\end_inset
+
+, it is acceptable for the minima of the cost function to correspond to
+ points with undefined gradient.
 \end_layout
 
 \begin_layout Section
