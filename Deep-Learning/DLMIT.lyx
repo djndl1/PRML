@@ -65,10 +65,10 @@ eqs-within-sections
 \shortcut idx
 \color #008000
 \end_index
-\leftmargin 1.5cm
-\topmargin 1.5cm
-\rightmargin 1.5cm
-\bottommargin 1.5cm
+\leftmargin 3cm
+\topmargin 3cm
+\rightmargin 3cm
+\bottommargin 3cm
 \secnumdepth 3
 \tocdepth 4
 \paragraph_separation indent
@@ -1422,6 +1422,94 @@ minibatch
 .
 \end_layout
 
+\begin_layout Section
+Maximum likelihood Estimation
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $p_{\text{model}}\left(\mathbf{x},\theta\right)$
+\end_inset
+
+ be parametric family of probability distributions over the same space indexed
+ by 
+\begin_inset Formula $\theta$
+\end_inset
+
+.
+ The maximum likelihood estimator for 
+\begin_inset Formula $\theta$
+\end_inset
+
+ is defined as 
+\begin_inset Formula 
+\begin{align*}
+\theta_{ML} & =\underset{\theta}{\arg\max}p_{\text{model}}\left(\mathbf{X};\theta\right)\\
+ & =\underset{\theta}{\arg\max}\prod_{i=1}^{m}p_{\text{model}}\left(\mathbf{x}^{\left(i\right)};\theta\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This product over many probabilities can be inconvenient for a variety of
+ reasons.
+ The logarithm of the likelihood does not change its argmax:
+\begin_inset Formula 
+\[
+\theta_{ML}=\underset{\theta}{\arg\max}\sum_{i=1}^{m}\log p_{\text{model}}\left(\mathbf{x}^{\left(i\right)};\theta\right)
+\]
+
+\end_inset
+
+And it doesn't change if we rescale the cost function, so we divide it by
+ 
+\begin_inset Formula $m$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\theta_{ML}=\underset{\theta}{\arg\max}E_{\mathbf{\mathbf{x}\sim\hat{p}_{\text{data}}}}\log p_{\text{model}}\left(\mathbf{x};\theta\right).
+\]
+
+\end_inset
+
+expressed as an expectation w.r.t.
+ the empirical distribution 
+\begin_inset Formula $\hat{p}_{\text{data}}$
+\end_inset
+
+ defined by the training data.
+\end_layout
+
+\begin_layout Standard
+One way to interpret maximum likelihood estimation is to view it as minimizing
+ the dissimilarity between the empirical distribution 
+\begin_inset Formula $\hat{p}_{\text{data}}$
+\end_inset
+
+ defined by the training set and the model distribution, with the degree
+ of dissimilarity between the two measured by the KL divergence, given by
+ 
+\begin_inset Formula 
+\[
+D_{\text{KL}}\left(\hat{p}_{\text{data}}\Vert p_{\text{model}}\right)=E_{\mathbf{x}\sim\hat{p}_{\text{data}}}\left[\log\hat{p}_{\text{data}}\left(x\right)-\log p_{\text{model}}\left(x\right)\right].
+\]
+
+\end_inset
+
+Minimizing the KL divergence corresponds to minimizing the cross-entropy
+ between the distributions.
+ Any loss consisting of a negative log-likelihood is a cross-entropy between
+ the empirical distribution defined by the training set and the probability
+ distribution defined by model.
+ We often phrase both minimizing KL divergence or maximizing the likelihood
+ as minimizing a cost function.
+\end_layout
+
 \begin_layout Part
 Deep Networks: Modern Practices
 \end_layout
@@ -1525,116 +1613,91 @@ Deep learning addresses the limitations of linear models and kernel methods
 \begin_inset Formula $\mathbf{x}$
 \end_inset
 
- to different feature dimensions to obtain a realiable non-linear function
- approximation.
+ to different feature space to obtain a realiable non-linear function approximat
+ion.
  Instead of specifying the right function, practitioners specify the right
  family of functions.
 \end_layout
 
 \begin_layout Section
-From cybernetics, connectionism to deep learning
+Solving the XOR Problem
 \end_layout
 
 \begin_layout Standard
-Computational models of biological learning, models of how learning happens
- or could happen in the brain (ANNs)
-\end_layout
-
-\begin_layout Standard
-The term 
-\begin_inset Quotes eld
-\end_inset
-
-deep learning
-\begin_inset Quotes erd
-\end_inset
-
- appeals to a more general principle of learning 
+To approximate a non-linear function, most neural networks use an affine
+ transformation controlled by learned parameters, followed by a fixed, nonlinear
+ function called an activation function.
+ We can't just chain a series of linear functions without using activation
+ functions, otherwise we end up having the whole neural network a linear
+ function.
+ In modern neural networks, the default recommendation is to use the 
 \emph on
-mutliple levels of compositions, 
+rectified linear unit
 \emph default
-not necessarily neurally inspired.
- The earliest predecessors of modern deep learning were simple linear models
- motivated from a neuroscientific perspective.
- e.g.
- the McCulloch-Pitts neuron, ADALINE.
- Slightly modified versions of the stochastic gradient descent algorithm
- remian the dominant training algorithm for deep learning models today.
- Most neural networks today are based on a model neuron called the rectified
- linear unit.
- The original cognitron (Fukushima, 1975) introduced a more complicated
- version that was highly inspired by our knowledge of brain function.
- Today, neuroscience is regarded as an important source of inspiration for
- deep learning researchers, but it is no longer the predominant guide for
- the field.
- Actual neurons compute very different functions than modern rectified linear
- units, but greater neural realism has not yet led to an improvement in
- machine learning performance.
+ (
+\emph on
+ReLU
+\emph default
+).
 \end_layout
 
 \begin_layout Standard
-The central idea in connectionism is that a large number of simple computational
- units can achieve intelligent behavior when networked together.
- One of these concepts is that of distributed representation.
- Another major accomplishment of the connectionist movement was the suc-
- cessful use of back-propagation to train deep neural networks with internal
- repre- sentations and the popularization of the back-propagation algorithm.
+A gradient-based optimization algorithm can find parameters that produce
+ very little error.
+ The convergence point of gradient descent depends on the initial value
+ of the parameters, In practice, gradient descent would usually not find
+ clean, easily understood, integer-valued solutions.
+ The nonlinearity of a neural network causes most interesting loss functions
+ to become non-convex, which means gradient-based optimizers is not guaranteed
+ to converge to a global minimum.
+ Stochastic gradient descent applied to non-convex loss functions has no
+ guarantee convergence given any initial parameters and is sensitive to
+ initial values.
+ For feedforward neural networks, it is important to initialize all weigths
+ to small random values.
+ The biases may be initialized to zero or to small positive values.
 \end_layout
 
 \begin_layout Standard
-The third wave of neural networks research began with a breakthrough in
- 2006.
- This wave of neural networks research popularized the use of the term “deep
- learning” to emphasize that researchers were now able to train deeper neural
- networks than had been possible before, and to focus attention on the theoretic
-al importance of depth.
-\end_layout
+An important aspect of the design of a deep neural network is the choice
+ of the cost function.
+ The cost function for neural networks are more or less the same as those
+ for other parametric models, such as linear models.
+ In most cases, our parametric model defines a distribution 
+\begin_inset Formula $p(y|x;θ)$
+\end_inset
 
-\begin_layout Section
-The age of Big Data
-\end_layout
+ and we simply use the principle of maximum likelihood.
+ Sometimes we merely predict some statistic of 
+\begin_inset Formula $y$
+\end_inset
 
-\begin_layout Standard
-The age of Big Data has made machine learning much easier because the key
- burden of statistical estimation—generalizing well to new data after observing
- only a small amount of data has been considerably lightened.
-\end_layout
+ conditioned on 
+\begin_inset Formula $x$
+\end_inset
 
-\begin_layout Section
-Increasing Model Sizes
-\end_layout
-
-\begin_layout Standard
-Since the introduction of hidden units, artificial neural networks have
- doubled in size roughly every 2.4 years.
- This growth is driven by faster computers with larger memory and by the
- availability of larger datasets.
- Larger networks are able to achieve higher accuracy on more complex tasks.
- The increase in model size over time, due to the availability of faster
- CPUs, the advent of general purpose GPUs , faster network connectivity
- and better software infrastructure for distributed computing, is one of
- the most important trends in the history of deep learning.
-\end_layout
-
-\begin_layout Section
-Increasing Accuracy, Complexity and Real-World Impact
+.
+ The total cost function used to train a neural network will often combine
+ one of the primary cost functions with a regularization term.
 \end_layout
 
 \begin_layout Standard
-Since the 1980s, deep learning has consistently improved in its ability
- to provide accurate recognition and prediction.
- Moreover, deep learning has consistently been applied with success to broader
- and broader sets of applications.
- 
+Since most modern neural networks are trained using maximum likelihood.
+ The cost function is simply the negative log-likelihood, equivalently decribed
+ as the cross-entropy between the training data and the model distribution,
+ given by 
+\begin_inset Formula 
+\[
+J\left(\theta\right)=-E_{\mathbf{x},\mathbf{y}\sim\hat{p}_{\text{data}}}\log p_{\text{model}}\left(y|x\right).
+\]
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Another crowning achievement of deep learning is its extension to the domain
- of reinforcement learning.
- In the context of reinforcement learning, an autonomous agent must learn
- to perform a task by trial and error, without any guidance from the human
- operator.
- 
+TODO
 \end_layout
 
 \begin_layout Section
